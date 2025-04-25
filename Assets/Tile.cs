@@ -27,6 +27,7 @@ public class Tile : MonoBehaviour
         if (type==0) {this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);}
         else if (type==1) {this.GetComponent<SpriteRenderer>().color = new Color(255,0,0);}
         else if (type==2) {this.GetComponent<SpriteRenderer>().color = new Color(0,255,0);}
+        else if (type==3) {this.GetComponent<SpriteRenderer>().color = new Color(128,128,0);}
         
 
 
@@ -35,4 +36,6 @@ public class Tile : MonoBehaviour
     {
         this.direction = direction;
     }
+    public char getDirection() {return this.direction;}
+    public short getType() {return this.type;}
 }
