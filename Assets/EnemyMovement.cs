@@ -23,11 +23,6 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
  
-        
-
-    }
-    void FixedUpdate()
-    {
         if ((this.direction != 'r')&&(speed_r > 0))
         {
             speed_r = speed_r - initial_speed / step;
@@ -53,6 +48,11 @@ public class EnemyMovement : MonoBehaviour
         t.position += Vector3.left * speed_l;
         t.position += Vector3.down * speed_d;
         t.position += Vector3.up * speed_u;
+
+    }
+    void FixedUpdate()
+    {
+        
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
