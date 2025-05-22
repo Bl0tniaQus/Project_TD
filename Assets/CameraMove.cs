@@ -20,6 +20,16 @@ public class CameraMove : MonoBehaviour
 
     private void LateUpdate()
     {
+
+        if (Input.GetAxis("Mouse ScrollWheel")>0f) // forward
+		{
+            if (Camera.main.orthographicSize>1) Camera.main.orthographicSize--;
+		}
+		if (Input.GetAxis("Mouse ScrollWheel")<0f ) // backwards
+		{
+			Camera.main.orthographicSize++;
+		}
+
         if (Input.GetMouseButton(2))
         {
             Difference = (Camera.main.ScreenToWorldPoint(Input.mousePosition)) - Camera.main.transform.position;
