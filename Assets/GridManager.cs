@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class GridManager : MonoBehaviour
 {
     public Tile prefab;
     public GameObject en;
     public GameObject camera;
+    public GameObject mapGrid;
     public int maxDim;
     private List<(int, int)> roadList = new List<(int, int)>();
     private Tile[,] tiles;
@@ -30,6 +31,8 @@ public class NewBehaviourScript : MonoBehaviour
         {
             tiles[i,j] = Instantiate(prefab, new Vector3(i*2,j*2,0), Quaternion.identity);
             tiles[i,j].name = "Tile";
+            tiles[i,j].GetComponent<Tile>().setCoords(i,j);
+            tiles[i,j].GetComponent<Tile>().setGrid(mapGrid);
             //tiles[i,j].GetComponent<Tile>().setType(1);
             //tiles[i,j].GetComponent<SpriteRenderer>().material.color = new Color(0, 204, 102);
             //tiles[i,j].GetComponent<SpriteRenderer>().material.color = new Color(0, 204, 102);
@@ -71,7 +74,7 @@ public class NewBehaviourScript : MonoBehaviour
         setRoad(center, center+2, 'd');
         setRoad(center, center+3, 'd');
 
-
+        setSpawner(center-1, center+3);
         //tiles[center-2, center+1].GetComponent<Tile>().setType(3); tiles[center-2, center+1].GetComponent<Tile>().setDirection('d');
         //tiles[center-3, center+1].GetComponent<Tile>().setType(3); tiles[center-3, center+1].GetComponent<Tile>().setDirection('r');
         //tiles[center-3, center+2].GetComponent<Tile>().setType(3); tiles[center-3, center+2].GetComponent<Tile>().setDirection('d');
@@ -133,5 +136,13 @@ public class NewBehaviourScript : MonoBehaviour
         tiles[x,y].GetComponent<Tile>().setType(3);
         tiles[x,y].GetComponent<Tile>().setDirection(dir);
         addRoadToList(x,y);
+    }
+    void setSpawner(int x, int y)
+    {
+        tiles[x,y].GetComponent<Tile>().setType(4);
+    }
+    public Tile getTile(int x, int y)
+    {
+        return tiles[x,y];
     }
 }

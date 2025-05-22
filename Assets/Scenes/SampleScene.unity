@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 153384329}
   - component: {fileID: 153384330}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: MapGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   prefab: {fileID: 12256686692278179, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
   en: {fileID: 3656454898757715196, guid: 900fe56fb64334bce85c1fec84f3a262, type: 3}
   camera: {fileID: 519420028}
+  mapGrid: {fileID: 153384327}
   maxDim: 15
 --- !u!1 &519420028
 GameObject:
