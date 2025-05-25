@@ -179,7 +179,7 @@ public class GridManager : MonoBehaviour
             int prob = Random.Range(0,100);
             float branchProb = weightedProbability(baseBranchProbability, baseBranchDecay, new_roads);
             (int x_new, int y_new) = shiftCoords(x,y,dir);
-            if (checkFreeField(x_new,y_new) && prob >= branchProb)
+            if (checkFreeField(x_new,y_new) && prob <= branchProb)
             {
                 //Debug.Log(dir);
                 setRoad(x_new,y_new, getOppositeDirection(dir));
@@ -200,7 +200,7 @@ public class GridManager : MonoBehaviour
             int prob = Random.Range(0,100);
             float spawnProb = weightedProbability(baseSpawnerSpawnProbability, baseSpawnerSpawnDecay, new_spawners);
             (int x_new, int y_new) = shiftCoords(x,y,dir);
-            if (checkFreeField(x_new,y_new) && prob >= spawnProb)
+            if (checkFreeField(x_new,y_new) && prob <= spawnProb)
             {
                 setSpawner(x_new,y_new);
                 new_spawners++;
@@ -210,7 +210,8 @@ public class GridManager : MonoBehaviour
     }
     public char getRandomDirection()
     {
-        int dir = Random.Range(1,4);
+        int dir = Random.Range(1,5);
+        Debug.Log(dir);
         if (dir == 1) {return 'r';}
         else if (dir == 2) {return 'l';}
         else if (dir == 3) {return 'd';}

@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
     float speed_u = 0.0f;
     float speed_d = 0.0f;
     Transform t = null;
-    char direction = '0';
+    char direction = 'f';
     int step;
     // Start is called before the first frame update
     void Start()
