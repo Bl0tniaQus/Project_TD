@@ -55,6 +55,10 @@ public class GridManager : MonoBehaviour
         expandField_left();
         expandField_left();
         expandField_left();
+        expandField_left();
+        expandField_left();
+        expandField_left();
+        expandField_left();
         expandField_right();
         expandField_right();
         expandField_right();
@@ -79,10 +83,10 @@ public class GridManager : MonoBehaviour
         setRoad(center, center+2, 'd');
         
         setRoad(center-3, center, 'r');
-        setRoad(center+3, center, 'l');
+        
         setRoad(center, center-3, 'u');
         setRoad(center, center+3, 'd');
-
+        setRoad(center+3, center, 'l');
 
         //setSpawner(center-1, center+3);
         expandRoad();
@@ -91,7 +95,6 @@ public class GridManager : MonoBehaviour
         expandRoad();
         expandRoad();
         expandRoad();
-        Debug.Log(roadList.Count);
 
         //tiles[center-2, center+1].GetComponent<Tile>().setType(3); tiles[center-2, center+1].GetComponent<Tile>().setDirection('d');
         //tiles[center-3, center+1].GetComponent<Tile>().setType(3); tiles[center-3, center+1].GetComponent<Tile>().setDirection('r');
@@ -167,7 +170,7 @@ public class GridManager : MonoBehaviour
     {
         int new_roads = 0;
 
-        for (int i = roadList.Count-1; i>8; i--)
+        for (int i = roadList.Count-1; i>7; i--)
         {
             (int x, int y) = roadList[i];
 
@@ -190,7 +193,7 @@ public class GridManager : MonoBehaviour
     {
         int new_spawners = 0;
 
-        for (int i = roadList.Count-1; i>8; i--)
+        for (int i = roadList.Count-1; i>7; i--)
         {
             (int x, int y) = roadList[i];
             char dir = getRandomDirection();
