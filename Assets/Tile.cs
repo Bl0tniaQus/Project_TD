@@ -60,16 +60,17 @@ public class Tile : MonoBehaviour
     {
         int maxDim = grid.GetComponent<GridManager>().maxDim;
         int x_spawn=0, y_spawn=0;
-        while(true)
+        int b = 0;
+        while(b<4)
         {
-            
+            b++;
             char dir = grid.GetComponent<GridManager>().getRandomDirection();
             if (dir=='r') {x_spawn = this.x+1; y_spawn = this.y;}
             else if (dir=='l') {x_spawn = this.x-1; y_spawn = this.y;}
             else if (dir=='u') {x_spawn = this.x; y_spawn = this.y+1;}
             else if (dir=='d') {x_spawn = this.x; y_spawn = this.y-1;}
 
-            if (x_spawn < 0 || x_spawn > maxDim || y_spawn < 0 || y_spawn > maxDim)
+            if ((x_spawn) < 0 || (x_spawn > maxDim) || (y_spawn < 0) || (y_spawn > maxDim))
             {
                 continue;
             }

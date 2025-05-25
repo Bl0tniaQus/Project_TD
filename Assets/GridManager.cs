@@ -9,6 +9,10 @@ public class GridManager : MonoBehaviour
     public GameObject camera;
     public GameObject mapGrid;
     public int maxDim;
+    public int baseBranchProbability;
+    public float baseBranchDecay;
+    public int baseSpawnerSpawnProbability;
+    public float baseSpawnerSpawnDecay;
     private List<(int, int)> roadList = new List<(int, int)>();
     private Tile[,] tiles;
     static int dim;
@@ -50,12 +54,16 @@ public class GridManager : MonoBehaviour
         expandField_left();
         expandField_left();
         expandField_left();
+        expandField_left();
+        expandField_right();
         expandField_right();
         expandField_right();
         expandField_right();
         expandField_down();
         expandField_down();
         expandField_down();
+        expandField_down();
+        expandField_up();
         expandField_up();
         expandField_up();
         expandField_up();
@@ -76,17 +84,23 @@ public class GridManager : MonoBehaviour
         setRoad(center, center+3, 'd');
 
 
-        setSpawner(center-1, center+3);
+        //setSpawner(center-1, center+3);
         expandRoad();
         expandRoad();
+        expandRoad();
+        expandRoad();
+        expandRoad();
+        expandRoad();
+        Debug.Log(roadList.Count);
+
         //tiles[center-2, center+1].GetComponent<Tile>().setType(3); tiles[center-2, center+1].GetComponent<Tile>().setDirection('d');
         //tiles[center-3, center+1].GetComponent<Tile>().setType(3); tiles[center-3, center+1].GetComponent<Tile>().setDirection('r');
         //tiles[center-3, center+2].GetComponent<Tile>().setType(3); tiles[center-3, center+2].GetComponent<Tile>().setDirection('d');
 
 
-        Vector3 pos = tiles[center, center+3].GetComponent<Tile>().transform.position;
-        pos.z = -5;
-        GameObject enemy = Instantiate(en, pos, Quaternion.identity);
+        //Vector3 pos = tiles[center, center+3].GetComponent<Tile>().transform.position;
+        //pos.z = -5;
+        //GameObject enemy = Instantiate(en, pos, Quaternion.identity);
 
     }
 
@@ -158,10 +172,15 @@ public class GridManager : MonoBehaviour
             (int x, int y) = roadList[i];
 
             char dir = getRandomDirection();
+            
+            int prob = Random.Range(0,100);
+            float branchProb = weightedProbability(baseBranchProbability, baseBranchDecay, new_roads);
             (int x_new, int y_new) = shiftCoords(x,y,dir);
-            if (checkFreeField(x_new,y_new))
+            if (checkFreeField(x_new,y_new) && prob >= branchProb)
             {
+                //Debug.Log(dir);
                 setRoad(x_new,y_new, getOppositeDirection(dir));
+                new_roads++;
             }
 
         }
@@ -169,17 +188,19 @@ public class GridManager : MonoBehaviour
     }
     public void spawnSpawners()
     {
-        int new_roads = 0;
+        int new_spawners = 0;
 
         for (int i = roadList.Count-1; i>8; i--)
         {
             (int x, int y) = roadList[i];
             char dir = getRandomDirection();
+            int prob = Random.Range(0,100);
+            float spawnProb = weightedProbability(baseSpawnerSpawnProbability, baseSpawnerSpawnDecay, new_spawners);
             (int x_new, int y_new) = shiftCoords(x,y,dir);
-            if (checkFreeField(x_new,y_new))
+            if (checkFreeField(x_new,y_new) && prob >= spawnProb)
             {
                 setSpawner(x_new,y_new);
-                break;
+                new_spawners++;
             }
 
         }
@@ -221,5 +242,9 @@ public class GridManager : MonoBehaviour
         if (dir=='u') {y_new +=1;}
         if (dir=='d') {y_new -= 1;}
         return (x_new, y_new);
+    }
+    public float weightedProbability(int baseP, float decay, int n)
+    {
+        return baseP / (1 + Mathf.Pow(decay, n));
     }
 }

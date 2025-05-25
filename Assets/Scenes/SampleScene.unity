@@ -171,6 +171,10 @@ MonoBehaviour:
   camera: {fileID: 519420028}
   mapGrid: {fileID: 153384327}
   maxDim: 15
+  baseBranchProbability: 70
+  baseBranchDecay: 1.1
+  baseSpawnerSpawnProbability: 20
+  baseSpawnerSpawnDecay: 1.2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
