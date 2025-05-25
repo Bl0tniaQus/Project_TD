@@ -29,7 +29,6 @@ public class Tile : MonoBehaviour
         if (this.cooldown>0f) {this.cooldown-=Time.deltaTime;}
         else 
         {
-            Debug.Log("xd");
             if (type==4) {spawn();}
         }
 
@@ -64,11 +63,11 @@ public class Tile : MonoBehaviour
         while(true)
         {
             
-            int dir = Random.Range(1,4);
-            if (dir==1) {x_spawn = this.x+1; y_spawn = this.y;}
-            else if (dir==2) {x_spawn = this.x-1; y_spawn = this.y;}
-            else if (dir==3) {x_spawn = this.x; y_spawn = this.y+1;}
-            else if (dir==4) {x_spawn = this.x; y_spawn = this.y-1;}
+            char dir = grid.GetComponent<GridManager>().getRandomDirection();
+            if (dir=='r') {x_spawn = this.x+1; y_spawn = this.y;}
+            else if (dir=='l') {x_spawn = this.x-1; y_spawn = this.y;}
+            else if (dir=='u') {x_spawn = this.x; y_spawn = this.y+1;}
+            else if (dir=='d') {x_spawn = this.x; y_spawn = this.y-1;}
 
             if (x_spawn < 0 || x_spawn > maxDim || y_spawn < 0 || y_spawn > maxDim)
             {

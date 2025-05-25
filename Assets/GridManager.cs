@@ -63,18 +63,22 @@ public class GridManager : MonoBehaviour
 
         setRoad(center-1, center, 'r');
         setRoad(center-2, center, 'r');
-        setRoad(center-3, center, 'r');
         setRoad(center+1, center, 'l');
         setRoad(center+2, center, 'l');
-        setRoad(center+3, center, 'l');
         setRoad(center, center-1, 'u');
         setRoad(center, center-2, 'u');
-        setRoad(center, center-3, 'u');
         setRoad(center, center+1, 'd');
         setRoad(center, center+2, 'd');
+        
+        setRoad(center-3, center, 'r');
+        setRoad(center+3, center, 'l');
+        setRoad(center, center-3, 'u');
         setRoad(center, center+3, 'd');
 
+
         setSpawner(center-1, center+3);
+        expandRoad();
+        expandRoad();
         //tiles[center-2, center+1].GetComponent<Tile>().setType(3); tiles[center-2, center+1].GetComponent<Tile>().setDirection('d');
         //tiles[center-3, center+1].GetComponent<Tile>().setType(3); tiles[center-3, center+1].GetComponent<Tile>().setDirection('r');
         //tiles[center-3, center+2].GetComponent<Tile>().setType(3); tiles[center-3, center+2].GetComponent<Tile>().setDirection('d');
@@ -144,5 +148,78 @@ public class GridManager : MonoBehaviour
     public Tile getTile(int x, int y)
     {
         return tiles[x,y];
+    }
+    void expandRoad()
+    {
+        int new_roads = 0;
+
+        for (int i = roadList.Count-1; i>8; i--)
+        {
+            (int x, int y) = roadList[i];
+
+            char dir = getRandomDirection();
+            (int x_new, int y_new) = shiftCoords(x,y,dir);
+            if (checkFreeField(x_new,y_new))
+            {
+                setRoad(x_new,y_new, getOppositeDirection(dir));
+            }
+
+        }
+        spawnSpawners();
+    }
+    public void spawnSpawners()
+    {
+        int new_roads = 0;
+
+        for (int i = roadList.Count-1; i>8; i--)
+        {
+            (int x, int y) = roadList[i];
+            char dir = getRandomDirection();
+            (int x_new, int y_new) = shiftCoords(x,y,dir);
+            if (checkFreeField(x_new,y_new))
+            {
+                setSpawner(x_new,y_new);
+                break;
+            }
+
+        }
+    }
+    public char getRandomDirection()
+    {
+        int dir = Random.Range(1,4);
+        if (dir == 1) {return 'r';}
+        else if (dir == 2) {return 'l';}
+        else if (dir == 3) {return 'd';}
+        else if (dir == 4) {return 'u';}
+        return 'f';
+    }
+    public char getOppositeDirection(char dir)
+    {
+        if (dir == 'r') {return 'l';}
+        else if (dir == 'l') {return 'r';}
+        else if (dir == 'u') {return 'd';}
+        else if (dir == 'd') {return 'u';}
+        return 'f';
+    }
+    public float distFromCenter(int x, int y)
+    {
+        return ((x-center) * (x-center)) + ((y - center) * (y - center));
+    }
+    public bool checkFreeField(int x, int y)
+    {
+         if (x<0 || x>maxDim) {return false;}
+         else if (y<0 || y>maxDim) {return false;}
+         else if (tiles[x,y].GetComponent<Tile>().getType()!=2) {return false;}
+         return true;
+    }
+    public (int, int) shiftCoords(int x, int y, char dir)
+    {
+        int x_new = x;
+        int y_new = y;
+        if (dir=='r') {x_new +=1;}
+        if (dir=='l') {x_new -=1;}
+        if (dir=='u') {y_new +=1;}
+        if (dir=='d') {y_new -= 1;}
+        return (x_new, y_new);
     }
 }
