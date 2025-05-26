@@ -170,6 +170,9 @@ MonoBehaviour:
   en: {fileID: 3656454898757715196, guid: 900fe56fb64334bce85c1fec84f3a262, type: 3}
   camera: {fileID: 519420028}
   mapGrid: {fileID: 153384327}
+  EB_prefab: {fileID: 7112851555001857648, guid: 123c25c96253834b39026de685f9b47b, type: 3}
+  PL_prefab: {fileID: 0}
+  ET_prefab: {fileID: 0}
   maxDim: 15
   baseBranchProbability: 70
   baseBranchDecay: 1.1

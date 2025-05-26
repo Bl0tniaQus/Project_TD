@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float initial_speed = 0.6f;
+    public float initial_speed;
+    public int damage;
+    public int health;
     float speed_r = 0.0f;
     float speed_l = 0.0f;
     float speed_u = 0.0f;
     float speed_d = 0.0f;
+
     Transform t = null;
     char direction = 'f';
     int step;
@@ -16,7 +19,7 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         t = transform;
-        step = Random.Range(60,150);
+        step = Random.Range(60,180);
     }
 
     // Update is called once per frame
@@ -54,7 +57,7 @@ public class EnemyMovement : MonoBehaviour
         t.position += Vector3.down * speed_d;
         t.position += Vector3.up * speed_u;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
 
         GameObject obj = collision.gameObject;
@@ -80,10 +83,21 @@ public class EnemyMovement : MonoBehaviour
                 {
                     speed_d = initial_speed;
                 }
-
-
                 }
-            
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject obj = collision.gameObject;
+        string name = obj.name;
+        if (name=="Tile")
+        {
+            short type = obj.GetComponent<Tile>().getType();
+            if (type==1)
+            {
+                //TODO deal damage
+                Destroy(this.gameObject);
+            }
         }
     }
 }
