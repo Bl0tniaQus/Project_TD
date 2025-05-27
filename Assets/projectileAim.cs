@@ -27,6 +27,7 @@ public class projectileAim : MonoBehaviour
     }
     void FixedUpdate()
     {
+        Debug.Log(this.cooldown);
         if (this.cooldown>=0f) {this.cooldown-=Time.deltaTime;}
         else 
         {
@@ -39,9 +40,9 @@ public class projectileAim : MonoBehaviour
                 bullet.GetComponent<projectileTravel>().setTarget((closestEnemy.transform.position - this.transform.position).normalized);
                 closestEnemy=null;
                 closestDist=-1.0f;
-                
+                this.cooldown = initialCooldown;
             }
-            this.cooldown = initialCooldown;
+            
         }
     }
     private float dist(GameObject enemy)
