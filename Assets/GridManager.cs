@@ -8,7 +8,14 @@ public class GridManager : MonoBehaviour
     public GameObject en;
     public GameObject camera;
     public GameObject mapGrid;
+    public GameObject EB_prefab;
+    public GameObject PL_prefab;
+    public GameObject ET_prefab;
     public int maxDim;
+    public int baseBranchProbability;
+    public float baseBranchDecay;
+    public int baseSpawnerSpawnProbability;
+    public float baseSpawnerSpawnDecay;
     private List<(int, int)> roadList = new List<(int, int)>();
     private Tile[,] tiles;
     static int dim;
@@ -50,12 +57,20 @@ public class GridManager : MonoBehaviour
         expandField_left();
         expandField_left();
         expandField_left();
+        expandField_left();
+        expandField_left();
+        expandField_left();
+        expandField_left();
+        expandField_left();
+        expandField_right();
         expandField_right();
         expandField_right();
         expandField_right();
         expandField_down();
         expandField_down();
         expandField_down();
+        expandField_down();
+        expandField_up();
         expandField_up();
         expandField_up();
         expandField_up();
@@ -63,26 +78,36 @@ public class GridManager : MonoBehaviour
 
         setRoad(center-1, center, 'r');
         setRoad(center-2, center, 'r');
-        setRoad(center-3, center, 'r');
         setRoad(center+1, center, 'l');
         setRoad(center+2, center, 'l');
-        setRoad(center+3, center, 'l');
         setRoad(center, center-1, 'u');
         setRoad(center, center-2, 'u');
-        setRoad(center, center-3, 'u');
         setRoad(center, center+1, 'd');
         setRoad(center, center+2, 'd');
+        
+        setRoad(center-3, center, 'r');
+        
+        setRoad(center, center-3, 'u');
         setRoad(center, center+3, 'd');
+        setRoad(center+3, center, 'l');
+        setTurret(1, center-1,center-1);
+        setTurret(2, center+1,center+1);
+        //setSpawner(center-1, center+3);
+        expandRoad();
+        expandRoad();
+        expandRoad();
+        expandRoad();
+        expandRoad();
+        expandRoad();
 
-        setSpawner(center-1, center+3);
         //tiles[center-2, center+1].GetComponent<Tile>().setType(3); tiles[center-2, center+1].GetComponent<Tile>().setDirection('d');
         //tiles[center-3, center+1].GetComponent<Tile>().setType(3); tiles[center-3, center+1].GetComponent<Tile>().setDirection('r');
         //tiles[center-3, center+2].GetComponent<Tile>().setType(3); tiles[center-3, center+2].GetComponent<Tile>().setDirection('d');
 
 
-        Vector3 pos = tiles[center, center+3].GetComponent<Tile>().transform.position;
-        pos.z = -5;
-        GameObject enemy = Instantiate(en, pos, Quaternion.identity);
+        //Vector3 pos = tiles[center, center+3].GetComponent<Tile>().transform.position;
+        //pos.z = -5;
+        //GameObject enemy = Instantiate(en, pos, Quaternion.identity);
 
     }
 
@@ -135,6 +160,16 @@ public class GridManager : MonoBehaviour
     {
         tiles[x,y].GetComponent<Tile>().setType(3);
         tiles[x,y].GetComponent<Tile>().setDirection(dir);
+
+
+        int a = 30;
+        if (dir=='r') {a = 30;}
+        if (dir=='d') {a = 31;}
+        if (dir=='l') {a = 32;}
+        if (dir =='u') {a = 33;}
+
+        tiles[x,y].GetComponent<Animator>().SetInteger("Type", a);
+
         addRoadToList(x,y);
     }
     void setSpawner(int x, int y)
@@ -144,5 +179,102 @@ public class GridManager : MonoBehaviour
     public Tile getTile(int x, int y)
     {
         return tiles[x,y];
+    }
+    void expandRoad()
+    {
+        int new_roads = 0;
+
+        for (int i = roadList.Count-1; i>7; i--)
+        {
+            (int x, int y) = roadList[i];
+
+            char dir = getRandomDirection();
+            
+            int prob = Random.Range(0,100);
+            float branchProb = weightedProbability(baseBranchProbability, baseBranchDecay, new_roads);
+            (int x_new, int y_new) = shiftCoords(x,y,dir);
+            if (checkFreeField(x_new,y_new) && prob <= branchProb)
+            {
+                setRoad(x_new,y_new, getOppositeDirection(dir));
+                new_roads++;
+            }
+
+        }
+        spawnSpawners();
+    }
+    public void spawnSpawners()
+    {
+        int new_spawners = 0;
+
+        for (int i = roadList.Count-1; i>7; i--)
+        {
+            (int x, int y) = roadList[i];
+            char dir = getRandomDirection();
+            int prob = Random.Range(0,100);
+            float spawnProb = weightedProbability(baseSpawnerSpawnProbability, baseSpawnerSpawnDecay, new_spawners);
+            (int x_new, int y_new) = shiftCoords(x,y,dir);
+            if (checkFreeField(x_new,y_new) && prob <= spawnProb)
+            {
+                setSpawner(x_new,y_new);
+                new_spawners++;
+            }
+
+        }
+    }
+    public char getRandomDirection()
+    {
+        int dir = Random.Range(1,5);
+        if (dir == 1) {return 'r';}
+        else if (dir == 2) {return 'l';}
+        else if (dir == 3) {return 'd';}
+        else if (dir == 4) {return 'u';}
+        return 'f';
+    }
+    public char getOppositeDirection(char dir)
+    {
+        if (dir == 'r') {return 'l';}
+        else if (dir == 'l') {return 'r';}
+        else if (dir == 'u') {return 'd';}
+        else if (dir == 'd') {return 'u';}
+        return 'f';
+    }
+    public float distFromCenter(int x, int y)
+    {
+        return ((x-center) * (x-center)) + ((y - center) * (y - center));
+    }
+    public bool checkFreeField(int x, int y)
+    {
+         if (x<0 || x>maxDim) {return false;}
+         else if (y<0 || y>maxDim) {return false;}
+         else if (tiles[x,y].GetComponent<Tile>().getType()!=2) {return false;}
+         return true;
+    }
+    public (int, int) shiftCoords(int x, int y, char dir)
+    {
+        int x_new = x;
+        int y_new = y;
+        if (dir=='r') {x_new +=1;}
+        if (dir=='l') {x_new -=1;}
+        if (dir=='u') {y_new +=1;}
+        if (dir=='d') {y_new -= 1;}
+        return (x_new, y_new);
+    }
+    public float weightedProbability(int baseP, float decay, int n)
+    {
+        return baseP / (1 + Mathf.Pow(decay, n));
+    }
+    public void setTurret(short type, int x, int y)
+    {
+         tiles[x,y].GetComponent<Tile>().setType(5);
+         Vector3 pos = tiles[x,y].GetComponent<Tile>().transform.position;
+         pos.z = -9;
+        if (type==1)
+        {
+            GameObject turret = Instantiate(EB_prefab, pos, Quaternion.identity);
+        }
+        if (type==2)
+        {
+            GameObject turret = Instantiate(PL_prefab, pos, Quaternion.identity);
+        }
     }
 }
