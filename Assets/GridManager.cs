@@ -40,6 +40,7 @@ public class GridManager : MonoBehaviour
             tiles[i,j].name = "Tile";
             tiles[i,j].GetComponent<Tile>().setCoords(i,j);
             tiles[i,j].GetComponent<Tile>().setGrid(mapGrid);
+            tiles[i,j].GetComponent<Animator>().SetInteger("Type", 0);
             //tiles[i,j].GetComponent<Tile>().setType(1);
             //tiles[i,j].GetComponent<SpriteRenderer>().material.color = new Color(0, 204, 102);
             //tiles[i,j].GetComponent<SpriteRenderer>().material.color = new Color(0, 204, 102);
@@ -122,6 +123,7 @@ public class GridManager : MonoBehaviour
         for (int i = y_bot; i<=y_top; i++)
         {
             tiles[x_left-1, i].setType(2);
+            setFloor(x_left-1, i);
         }
         x_left--;
     }
@@ -130,7 +132,7 @@ public class GridManager : MonoBehaviour
         if (x_right==maxDim) {return;}
         for (int i = y_bot; i<=y_top; i++)
         {
-            tiles[x_right+1, i].setType(2);
+            setFloor(x_right+1, i);
         }
         x_right++;
     }
@@ -140,6 +142,7 @@ public class GridManager : MonoBehaviour
         for (int i = x_left; i<=x_right; i++)
         {
             tiles[i, y_top + 1].setType(2);
+            setFloor(i, y_top + 1);
         }
         y_top++;
     }
@@ -148,7 +151,7 @@ public class GridManager : MonoBehaviour
         if (y_bot==0) {return;}
         for (int i = x_left; i<=x_right; i++)
         {
-            tiles[i, y_bot - 1].setType(2);
+            setFloor(i, y_bot-1);
         }
         y_bot--;
     }
@@ -276,5 +279,11 @@ public class GridManager : MonoBehaviour
         {
             GameObject turret = Instantiate(PL_prefab, pos, Quaternion.identity);
         }
+    }
+    public void setFloor(int x, int y)
+    {
+        tiles[x,y].GetComponent<Tile>().setType(2);
+        int r = Random.Range(0,5);
+        tiles[x,y].GetComponent<Animator>().SetInteger("Type", 20+r);
     }
 }
