@@ -8,6 +8,9 @@ public class GridManager : MonoBehaviour
     public GameObject en;
     public GameObject camera;
     public GameObject mapGrid;
+    public GameObject EB_prefab;
+    public GameObject PL_prefab;
+    public GameObject ET_prefab;
     public int maxDim;
     public int baseBranchProbability;
     public float baseBranchDecay;
@@ -87,7 +90,8 @@ public class GridManager : MonoBehaviour
         setRoad(center, center-3, 'u');
         setRoad(center, center+3, 'd');
         setRoad(center+3, center, 'l');
-
+        setTurret(1, center-1,center-1);
+        setTurret(2, center+1,center+1);
         //setSpawner(center-1, center+3);
         expandRoad();
         expandRoad();
@@ -156,6 +160,16 @@ public class GridManager : MonoBehaviour
     {
         tiles[x,y].GetComponent<Tile>().setType(3);
         tiles[x,y].GetComponent<Tile>().setDirection(dir);
+
+
+        int a = 30;
+        if (dir=='r') {a = 30;}
+        if (dir=='d') {a = 31;}
+        if (dir=='l') {a = 32;}
+        if (dir =='u') {a = 33;}
+
+        tiles[x,y].GetComponent<Animator>().SetInteger("Type", a);
+
         addRoadToList(x,y);
     }
     void setSpawner(int x, int y)
@@ -181,7 +195,6 @@ public class GridManager : MonoBehaviour
             (int x_new, int y_new) = shiftCoords(x,y,dir);
             if (checkFreeField(x_new,y_new) && prob <= branchProb)
             {
-                //Debug.Log(dir);
                 setRoad(x_new,y_new, getOppositeDirection(dir));
                 new_roads++;
             }
@@ -211,7 +224,6 @@ public class GridManager : MonoBehaviour
     public char getRandomDirection()
     {
         int dir = Random.Range(1,5);
-        Debug.Log(dir);
         if (dir == 1) {return 'r';}
         else if (dir == 2) {return 'l';}
         else if (dir == 3) {return 'd';}
@@ -250,5 +262,19 @@ public class GridManager : MonoBehaviour
     public float weightedProbability(int baseP, float decay, int n)
     {
         return baseP / (1 + Mathf.Pow(decay, n));
+    }
+    public void setTurret(short type, int x, int y)
+    {
+         tiles[x,y].GetComponent<Tile>().setType(5);
+         Vector3 pos = tiles[x,y].GetComponent<Tile>().transform.position;
+         pos.z = -9;
+        if (type==1)
+        {
+            GameObject turret = Instantiate(EB_prefab, pos, Quaternion.identity);
+        }
+        if (type==2)
+        {
+            GameObject turret = Instantiate(PL_prefab, pos, Quaternion.identity);
+        }
     }
 }
