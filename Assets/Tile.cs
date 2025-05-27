@@ -5,10 +5,11 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public GameObject grid;
-    private short type; //0 - empty, 1 - core, 2 - grass, 3 - road, 4 - spawner, 10+ - turrets
+    private short type; //0 - empty, 1 - core, 2 - grass, 3 - road, 4 - spawner, 5 - turrets
     private char direction;
     private int x, y;
     private float cooldown = 0f;
+    int animation;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,12 +37,36 @@ public class Tile : MonoBehaviour
     public void setType(short type)
     {
         this.type = type;
-        if (type==0) {this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);}
-        else if (type==1) {this.GetComponent<SpriteRenderer>().color = new Color(255,0,0);}
-        else if (type==2) {this.GetComponent<SpriteRenderer>().color = new Color(0,255,0);}
-        else if (type==3) {this.GetComponent<SpriteRenderer>().color = new Color(128,128,0);}
-        else if (type==4) {this.GetComponent<SpriteRenderer>().color = new Color(180,140,128);}
-        else if (type==10) {this.GetComponent<SpriteRenderer>().color = new Color(0,0,128);}
+        if (type==0) {
+            
+            //this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+            
+            }
+        else if (type==1) {
+            
+            //this.GetComponent<SpriteRenderer>().color = new Color(255,0,0);
+            
+            }
+        else if (type==2) {
+            
+            //this.GetComponent<SpriteRenderer>().color = new Color(0,255,0);
+            
+            }
+        else if (type==3) {
+            this.animation = 30;    
+            }
+        else if (type==4) {
+            
+            //this.GetComponent<SpriteRenderer>().color = new Color(180,140,128);
+            
+            }
+        else if (type==5) {
+            
+            
+           // this.GetComponent<SpriteRenderer>().color = new Color(0,0,128);
+            
+            
+            }
 
 
         
@@ -83,7 +108,7 @@ public class Tile : MonoBehaviour
                     Vector3 pos = t.GetComponent<Tile>().transform.position;
                     pos.z = -5;
                     GameObject enemy = Instantiate(this.grid.GetComponent<GridManager>().en, pos, Quaternion.identity);
-                    this.cooldown = 3f;
+                    this.cooldown = 5f;
                     break;
                 }
             }

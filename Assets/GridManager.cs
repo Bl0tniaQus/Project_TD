@@ -90,7 +90,8 @@ public class GridManager : MonoBehaviour
         setRoad(center, center-3, 'u');
         setRoad(center, center+3, 'd');
         setRoad(center+3, center, 'l');
-        setTurret(10, center+1,center+1);
+        setTurret(1, center-1,center-1);
+        setTurret(2, center+1,center+1);
         //setSpawner(center-1, center+3);
         expandRoad();
         expandRoad();
@@ -159,6 +160,16 @@ public class GridManager : MonoBehaviour
     {
         tiles[x,y].GetComponent<Tile>().setType(3);
         tiles[x,y].GetComponent<Tile>().setDirection(dir);
+
+
+        int a = 30;
+        if (dir=='r') {a = 30;}
+        if (dir=='d') {a = 31;}
+        if (dir=='l') {a = 32;}
+        if (dir =='u') {a = 33;}
+
+        tiles[x,y].GetComponent<Animator>().SetInteger("Type", a);
+
         addRoadToList(x,y);
     }
     void setSpawner(int x, int y)
@@ -254,12 +265,16 @@ public class GridManager : MonoBehaviour
     }
     public void setTurret(short type, int x, int y)
     {
-         tiles[x,y].GetComponent<Tile>().setType(type);
-        if (type==10)
+         tiles[x,y].GetComponent<Tile>().setType(5);
+         Vector3 pos = tiles[x,y].GetComponent<Tile>().transform.position;
+         pos.z = -9;
+        if (type==1)
         {
-            Vector3 pos = tiles[x,y].GetComponent<Tile>().transform.position;
-            pos.z = -9;
             GameObject turret = Instantiate(EB_prefab, pos, Quaternion.identity);
+        }
+        if (type==2)
+        {
+            GameObject turret = Instantiate(PL_prefab, pos, Quaternion.identity);
         }
     }
 }

@@ -27,7 +27,6 @@ public class projectileAim : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Debug.Log(closestDist);
         if (this.cooldown>=0f) {this.cooldown-=Time.deltaTime;}
         else 
         {
@@ -38,6 +37,8 @@ public class projectileAim : MonoBehaviour
                 pos.z = -5;
                 GameObject bullet = Instantiate(projectile, pos, Quaternion.identity);
                 bullet.GetComponent<projectileTravel>().setTarget((closestEnemy.transform.position - this.transform.position).normalized);
+                closestEnemy=null;
+                closestDist=-1.0f;
                 
             }
             this.cooldown = initialCooldown;
@@ -59,6 +60,7 @@ public class projectileAim : MonoBehaviour
         string tag = obj.tag;
         if (tag=="Enemy")
         {
+            if (obj.GetComponent<EnemyMovement>().getMarkedForDestruction()) {return;}
             float distance = dist(obj);
             if ((distance < closestDist) || (closestDist==-1.0f))
             {

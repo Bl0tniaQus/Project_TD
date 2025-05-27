@@ -162,4 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
-  ttl: 7
+  ttl: 5
+  damage: 1
+  piercing: 0

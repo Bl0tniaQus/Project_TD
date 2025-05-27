@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
     float speed_l = 0.0f;
     float speed_u = 0.0f;
     float speed_d = 0.0f;
-
+    bool markedForDestruction = false;
     Transform t = null;
     char direction = 'f';
     int step;
@@ -95,9 +95,22 @@ public class EnemyMovement : MonoBehaviour
             short type = obj.GetComponent<Tile>().getType();
             if (type==1)
             {
+                markedForDestruction = true;
                 //TODO deal damage
                 Destroy(this.gameObject);
             }
+        }
+    }
+    public bool getMarkedForDestruction()
+    {
+        return markedForDestruction;
+    }
+    public void takeDamage(int dmg)
+    {
+        health-=dmg;
+        if (health<=0)
+        {
+            Destroy(this.gameObject);
         }
     }
 }

@@ -6,6 +6,8 @@ public class projectileTravel : MonoBehaviour
 {
     public float speed;
     public float ttl;
+    public int damage;
+    public int piercing;
     Vector3 target;
     float lifetime = 0;
     // Start is called before the first frame update
@@ -29,5 +31,16 @@ public class projectileTravel : MonoBehaviour
     public void setTarget(Vector3 t)
     {
         this.target = t;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject obj = collision.gameObject;
+        string tag = obj.tag;
+        if (tag=="Enemy")
+        {
+            obj.GetComponent<EnemyMovement>().takeDamage(damage);
+            piercing--;
+            if (piercing<0) {Destroy(this.gameObject);}
+        }
     }
 }
