@@ -7,6 +7,8 @@ public class EnemyMovement : MonoBehaviour
     public float initial_speed;
     public int damage;
     public int health;
+    int max_health;
+    GameObject resourceManager;
     float speed_r = 0.0f;
     float speed_l = 0.0f;
     float speed_u = 0.0f;
@@ -20,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
     {
         t = transform;
         step = Random.Range(60,180);
+        max_health = health;
     }
 
     // Update is called once per frame
@@ -96,7 +99,7 @@ public class EnemyMovement : MonoBehaviour
             if (type==1)
             {
                 markedForDestruction = true;
-                //TODO deal damage
+                this.resourceManager.GetComponent<ResourceManagerScript>().takeDamage(this.damage);
                 Destroy(this.gameObject);
             }
         }
@@ -111,7 +114,11 @@ public class EnemyMovement : MonoBehaviour
         if (health<=0)
         {
             markedForDestruction = true;
+            this.resourceManager.GetComponent<ResourceManagerScript>().increaseScore(this.max_health);
+            
             Destroy(this.gameObject);
         }
     }
+    public void setResourceManager(GameObject manager)
+    {this.resourceManager = manager;}
 }
