@@ -22,14 +22,14 @@ public class projectileAim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //this.transform.LookAt(closestEnemy.transform.position);
+        
+        
         
     }
     void FixedUpdate()
     {
-        Debug.Log(this.cooldown);
-        if (this.cooldown>=0f) {this.cooldown-=Time.deltaTime;}
-        else 
+        if (this.cooldown>0f) {this.cooldown-=Time.deltaTime;}
+        if (this.cooldown<=0f)
         {
             
             if (closestEnemy!=null)
@@ -63,7 +63,7 @@ public class projectileAim : MonoBehaviour
         {
             if (obj.GetComponent<EnemyMovement>().getMarkedForDestruction()) {return;}
             float distance = dist(obj);
-            if ((distance < closestDist) || (closestDist==-1.0f))
+            if ((distance < closestDist) || (closestEnemy == null))
             {
                 closestEnemy = obj;
                 closestDist = distance;
