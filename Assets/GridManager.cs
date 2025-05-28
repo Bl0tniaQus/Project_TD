@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
     public GameObject EB_prefab;
     public GameObject PL_prefab;
     public GameObject ET_prefab;
+    public GameObject resourceManager;
     public int maxDim;
     public int baseBranchProbability;
     public float baseBranchDecay;
@@ -40,6 +41,7 @@ public class GridManager : MonoBehaviour
             tiles[i,j].name = "Tile";
             tiles[i,j].GetComponent<Tile>().setCoords(i,j);
             tiles[i,j].GetComponent<Tile>().setGrid(mapGrid);
+            tiles[i,j].GetComponent<Tile>().setResourceManager(resourceManager);
             tiles[i,j].GetComponent<Animator>().SetInteger("Type", 0);
             //tiles[i,j].GetComponent<Tile>().setType(1);
             //tiles[i,j].GetComponent<SpriteRenderer>().material.color = new Color(0, 204, 102);
@@ -274,14 +276,17 @@ public class GridManager : MonoBehaviour
         if (type==1)
         {
             GameObject turret = Instantiate(EB_prefab, pos, Quaternion.identity);
+            turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
         }
         if (type==2)
         {
             GameObject turret = Instantiate(PL_prefab, pos, Quaternion.identity);
+            turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
         }
         if (type==3)
         {
             GameObject turret = Instantiate(ET_prefab, pos, Quaternion.identity);
+            turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
         }
     }
     public void setFloor(int x, int y)

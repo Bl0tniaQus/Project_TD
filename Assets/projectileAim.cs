@@ -8,6 +8,7 @@ public class projectileAim : MonoBehaviour
     public GameObject projectile;
     float cooldown;
     GameObject closestEnemy = null;
+    GameObject resourceManager;
     float x,y;
     float closestDist = -1.0f;
     // Start is called before the first frame update
@@ -37,6 +38,7 @@ public class projectileAim : MonoBehaviour
                 Vector3 pos = this.transform.position;
                 pos.z = -5;
                 GameObject bullet = Instantiate(projectile, pos, Quaternion.identity);
+                bullet.GetComponent<projectileTravel>().setResourceManager(resourceManager);
                 bullet.GetComponent<projectileTravel>().setTarget((closestEnemy.transform.position - this.transform.position).normalized);
                 closestEnemy=null;
                 closestDist=-1.0f;
@@ -70,4 +72,5 @@ public class projectileAim : MonoBehaviour
             }
         }
     }
+    public void setResourceManager(GameObject manager) {this.resourceManager = manager;}
 }
