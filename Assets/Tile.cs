@@ -5,10 +5,12 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public GameObject grid;
-    private short type; //0 - empty, 1 - core, 2 - grass, 3 - road, 4 - spawner, 10+ - turrets
+    GameObject resourceManager;
+    private short type; //0 - empty, 1 - core, 2 - grass, 3 - road, 4 - spawner, 5 - turrets
     private char direction;
     private int x, y;
     private float cooldown = 0f;
+    int animation;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,6 @@ public class Tile : MonoBehaviour
         if (this.cooldown>0f) {this.cooldown-=Time.deltaTime;}
         else 
         {
-            Debug.Log("xd");
             if (type==4) {spawn();}
         }
 
@@ -37,11 +38,36 @@ public class Tile : MonoBehaviour
     public void setType(short type)
     {
         this.type = type;
-        if (type==0) {this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);}
-        else if (type==1) {this.GetComponent<SpriteRenderer>().color = new Color(255,0,0);}
-        else if (type==2) {this.GetComponent<SpriteRenderer>().color = new Color(0,255,0);}
-        else if (type==3) {this.GetComponent<SpriteRenderer>().color = new Color(128,128,0);}
-        else if (type==4) {this.GetComponent<SpriteRenderer>().color = new Color(180,140,128);}
+        if (type==0) {
+            
+            //this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+            
+            }
+        else if (type==1) {
+            
+            //this.GetComponent<SpriteRenderer>().color = new Color(255,0,0);
+            
+            }
+        else if (type==2) {
+            
+            //this.GetComponent<SpriteRenderer>().color = new Color(0,255,0);
+            
+            }
+        else if (type==3) {
+            this.animation = 30;    
+            }
+        else if (type==4) {
+            
+            //this.GetComponent<SpriteRenderer>().color = new Color(180,140,128);
+            
+            }
+        else if (type==5) {
+            
+            
+           // this.GetComponent<SpriteRenderer>().color = new Color(0,0,128);
+            
+            
+            }
 
 
         
@@ -63,14 +89,13 @@ public class Tile : MonoBehaviour
         int x_spawn=0, y_spawn=0;
         while(true)
         {
-            
-            int dir = Random.Range(1,4);
-            if (dir==1) {x_spawn = this.x+1; y_spawn = this.y;}
-            else if (dir==2) {x_spawn = this.x-1; y_spawn = this.y;}
-            else if (dir==3) {x_spawn = this.x; y_spawn = this.y+1;}
-            else if (dir==4) {x_spawn = this.x; y_spawn = this.y-1;}
+            char dir = grid.GetComponent<GridManager>().getRandomDirection();
+            if (dir=='r') {x_spawn = this.x+1; y_spawn = this.y;}
+            else if (dir=='l') {x_spawn = this.x-1; y_spawn = this.y;}
+            else if (dir=='u') {x_spawn = this.x; y_spawn = this.y+1;}
+            else if (dir=='d') {x_spawn = this.x; y_spawn = this.y-1;}
 
-            if (x_spawn < 0 || x_spawn > maxDim || y_spawn < 0 || y_spawn > maxDim)
+            if ((x_spawn) < 0 || (x_spawn > maxDim-1) || (y_spawn < 0) || (y_spawn > maxDim-1))
             {
                 continue;
             }
@@ -84,7 +109,8 @@ public class Tile : MonoBehaviour
                     Vector3 pos = t.GetComponent<Tile>().transform.position;
                     pos.z = -5;
                     GameObject enemy = Instantiate(this.grid.GetComponent<GridManager>().en, pos, Quaternion.identity);
-                    this.cooldown = 3f;
+                    enemy.GetComponent<EnemyMovement>().setResourceManager(resourceManager);
+                    this.cooldown = 5f;
                     break;
                 }
             }
@@ -94,4 +120,6 @@ public class Tile : MonoBehaviour
         
 
     }
+    public void setResourceManager(GameObject manager)
+    {this.resourceManager = manager;}
 }

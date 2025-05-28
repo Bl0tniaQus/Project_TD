@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float initial_speed = 0.6f;
+    public float initial_speed;
+    public int damage;
+    public int health;
+    int max_health;
+    GameObject resourceManager;
     float speed_r = 0.0f;
     float speed_l = 0.0f;
     float speed_u = 0.0f;
     float speed_d = 0.0f;
+    bool markedForDestruction = false;
     Transform t = null;
-    char direction = '0';
+    char direction = 'f';
     int step;
     // Start is called before the first frame update
     void Start()
     {
         t = transform;
-        step = Random.Range(60,150);
+        step = Random.Range(60,180);
+        max_health = health;
     }
 
     // Update is called once per frame
@@ -54,7 +60,7 @@ public class EnemyMovement : MonoBehaviour
         t.position += Vector3.down * speed_d;
         t.position += Vector3.up * speed_u;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
 
         GameObject obj = collision.gameObject;
@@ -80,10 +86,39 @@ public class EnemyMovement : MonoBehaviour
                 {
                     speed_d = initial_speed;
                 }
-
-
                 }
-            
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject obj = collision.gameObject;
+        string name = obj.name;
+        if (name=="Tile")
+        {
+            short type = obj.GetComponent<Tile>().getType();
+            if (type==1)
+            {
+                markedForDestruction = true;
+                this.resourceManager.GetComponent<ResourceManagerScript>().takeDamage(this.damage);
+                Destroy(this.gameObject);
+            }
+        }
+    }
+    public bool getMarkedForDestruction()
+    {
+        return markedForDestruction;
+    }
+    public void takeDamage(int dmg)
+    {
+        health-=dmg;
+        if (health<=0)
+        {
+            markedForDestruction = true;
+            this.resourceManager.GetComponent<ResourceManagerScript>().increaseScore(this.max_health);
+            
+            Destroy(this.gameObject);
+        }
+    }
+    public void setResourceManager(GameObject manager)
+    {this.resourceManager = manager;}
 }
