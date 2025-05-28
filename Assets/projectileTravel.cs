@@ -23,10 +23,19 @@ public class projectileTravel : MonoBehaviour
     }
     void FixedUpdate()
     {
-        this.transform.position += target * speed;
-        if (this.transform.position == target) {Destroy(this.gameObject);}
+        Debug.Log(this.name);
+        if (this.name=="EMP(Clone)")
+        {
+            this.transform.localScale += new Vector3(speed,speed,0) * Time.deltaTime;
+        }
+        else
+        {
+            this.transform.position += target * speed;
+            //if (this.transform.position == target) {Destroy(this.gameObject);}      
+        }
         lifetime+=Time.deltaTime;
         if (lifetime>=ttl) {Destroy(this.gameObject);}
+
     }
     public void setTarget(Vector3 t)
     {
@@ -40,7 +49,7 @@ public class projectileTravel : MonoBehaviour
         {
             obj.GetComponent<EnemyMovement>().takeDamage(damage);
             piercing--;
-            if (piercing<0) {Destroy(this.gameObject);}
+            if (piercing<0 && piercing+1>-100) {Destroy(this.gameObject);}
         }
     }
 }
