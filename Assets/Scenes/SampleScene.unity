@@ -172,7 +172,7 @@ MonoBehaviour:
   mapGrid: {fileID: 153384327}
   EB_prefab: {fileID: 7112851555001857648, guid: 123c25c96253834b39026de685f9b47b, type: 3}
   PL_prefab: {fileID: 5109123988989339586, guid: 9347e10a58c2f438992cc0db5c83d57e, type: 3}
-  ET_prefab: {fileID: 0}
+  ET_prefab: {fileID: 6851144939200794441, guid: 9ad8c83b5760ae05e9cf1c9efeb7c7b1, type: 3}
   maxDim: 15
   baseBranchProbability: 70
   baseBranchDecay: 1.1
@@ -283,71 +283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5aae176a309a80a6accf455927abddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &708925051
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2699395742659751383, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2699395742659751383, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2699395742659751383, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2699395742659751383, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2699395742659751383, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2699395742659751383, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2699395742659751383, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2699395742659751383, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2699395742659751383, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2699395742659751383, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4339759353946870017, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_Name
-      value: Tile
-      objectReference: {fileID: 0}
-    - target: {fileID: 5675668770832031981, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f000f31a4461c0bbf9a027cd3491c96e, type: 3}
-    - target: {fileID: 5675668770832031981, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
 --- !u!1 &735040278
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,8 +737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b60d323b27818b7678525b6aa261181a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quitGame: {fileID: 735040280}
-  mainMenuSceneName: MainMenu
 --- !u!4 &1782751295
 Transform:
   m_ObjectHideFlags: 0
@@ -828,4 +761,3 @@ SceneRoots:
   - {fileID: 1761284949}
   - {fileID: 746027544}
   - {fileID: 1782751295}
-  - {fileID: 708925051}

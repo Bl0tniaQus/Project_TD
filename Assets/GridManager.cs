@@ -91,8 +91,8 @@ public class GridManager : MonoBehaviour
         setRoad(center, center-3, 'u');
         setRoad(center, center+3, 'd');
         setRoad(center+3, center, 'l');
-        setTurret(1, center-1,center-1);
-        setTurret(2, center+1,center+1);
+        setTurret(3, center-1,center-1);
+        setTurret(3, center+1,center+1);
         //setSpawner(center-1, center+3);
         expandRoad();
         expandRoad();
@@ -278,6 +278,10 @@ public class GridManager : MonoBehaviour
         if (type==2)
         {
             GameObject turret = Instantiate(PL_prefab, pos, Quaternion.identity);
+        }
+        if (type==3)
+        {
+            GameObject turret = Instantiate(ET_prefab, pos, Quaternion.identity);
         }
     }
     public void setFloor(int x, int y)

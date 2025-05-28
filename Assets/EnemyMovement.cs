@@ -110,6 +110,7 @@ public class EnemyMovement : MonoBehaviour
         health-=dmg;
         if (health<=0)
         {
+            markedForDestruction = true;
             Destroy(this.gameObject);
         }
     }
