@@ -26,14 +26,24 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI towerLevel;
     [SerializeField] private TextMeshProUGUI towerName;
 
-
+    [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private TextMeshProUGUI scrapText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     GameObject tile = null;
 
 
     void Update()
     {
-     
+        if (resourceManager != null)
+        {
+            var rm = resourceManager.GetComponent<ResourceManagerScript>();
+            hpText.text = $"HP: {rm.getHP()}";
+            scrapText.text = $"Scrap: {rm.getMoney()}";
+            scoreText.text = $"Total Score: {rm.getScore()}";
+        }
+
+        
     }
 
 
