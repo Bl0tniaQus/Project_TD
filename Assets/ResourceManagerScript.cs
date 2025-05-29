@@ -6,7 +6,7 @@ public class ResourceManagerScript : MonoBehaviour
 {
 
     private long score = 0;
-    private long money = 1000000;
+    private long money = 50;
     private int hp = 100;
     public double scoreFactor;
     private long scoreGoal = 10;

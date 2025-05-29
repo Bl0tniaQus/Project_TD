@@ -5,7 +5,6 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public GameObject grid;
-    public UIManager uiManager;
     GameObject resourceManager;
     GameObject turret;
     private short type; //0 - empty, 1 - core, 2 - grass, 3 - road, 4 - spawner, 5 - turrets
@@ -16,10 +15,7 @@ public class Tile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      if (uiManager == null)
-    {
-        uiManager = FindObjectOfType<UIManager>();
-    }
+
     }
     void Awake()
     {
@@ -32,7 +28,9 @@ public class Tile : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if (!uiManager.towerBuildPanel.activeSelf && !uiManager.towerUpgradePanel.activeSelf)
+        bool towerBuild = this.grid.GetComponent<GridManager>().uiManager.GetComponent<UIManager>().towerBuildPanel.activeSelf;
+        bool towerUpgrade = this.grid.GetComponent<GridManager>().uiManager.GetComponent<UIManager>().towerUpgradePanel.activeSelf;
+        if (!towerBuild && !towerUpgrade)
         {
             grid.GetComponent<GridManager>().highlightField(this.gameObject);
         }
