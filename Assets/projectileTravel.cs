@@ -10,6 +10,7 @@ public class projectileTravel : MonoBehaviour
     public int piercing;
     Vector3 target;
     float lifetime = 0;
+    GameObject resourceManager;
     // Start is called before the first frame update
     void Awake()
     {
@@ -23,7 +24,6 @@ public class projectileTravel : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Debug.Log(this.name);
         if (this.name=="EMP(Clone)")
         {
             this.transform.localScale += new Vector3(speed,speed,0) * Time.deltaTime;
@@ -52,4 +52,6 @@ public class projectileTravel : MonoBehaviour
             if (piercing<0 && piercing+1>-100) {Destroy(this.gameObject);}
         }
     }
+    public void setResourceManager(GameObject manager)
+    {this.resourceManager = manager;}
 }

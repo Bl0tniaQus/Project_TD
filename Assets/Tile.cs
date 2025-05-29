@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public GameObject grid;
+    GameObject resourceManager;
     private short type; //0 - empty, 1 - core, 2 - grass, 3 - road, 4 - spawner, 5 - turrets
     private char direction;
     private int x, y;
@@ -23,6 +24,10 @@ public class Tile : MonoBehaviour
     void Update()
     {
         
+    }
+    void OnMouseDown()
+    {
+        Debug.LogFormat("{0}, {1}",x,y);
     }
     void FixedUpdate()
     {
@@ -108,6 +113,7 @@ public class Tile : MonoBehaviour
                     Vector3 pos = t.GetComponent<Tile>().transform.position;
                     pos.z = -5;
                     GameObject enemy = Instantiate(this.grid.GetComponent<GridManager>().en, pos, Quaternion.identity);
+                    enemy.GetComponent<EnemyMovement>().setResourceManager(resourceManager);
                     this.cooldown = 5f;
                     break;
                 }
@@ -118,4 +124,6 @@ public class Tile : MonoBehaviour
         
 
     }
+    public void setResourceManager(GameObject manager)
+    {this.resourceManager = manager;}
 }

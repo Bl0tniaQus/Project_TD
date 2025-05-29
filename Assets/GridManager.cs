@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
     public GameObject EB_prefab;
     public GameObject PL_prefab;
     public GameObject ET_prefab;
+    public GameObject resourceManager;
     public int maxDim;
     public int baseBranchProbability;
     public float baseBranchDecay;
@@ -40,6 +41,7 @@ public class GridManager : MonoBehaviour
             tiles[i,j].name = "Tile";
             tiles[i,j].GetComponent<Tile>().setCoords(i,j);
             tiles[i,j].GetComponent<Tile>().setGrid(mapGrid);
+            tiles[i,j].GetComponent<Tile>().setResourceManager(resourceManager);
             tiles[i,j].GetComponent<Animator>().SetInteger("Type", 0);
             //tiles[i,j].GetComponent<Tile>().setType(1);
             //tiles[i,j].GetComponent<SpriteRenderer>().material.color = new Color(0, 204, 102);
@@ -48,17 +50,13 @@ public class GridManager : MonoBehaviour
         
         }
         tiles[center, center].GetComponent<Tile>().setType(1);
-
+        Debug.Log(center);
         Vector3 cam_pos = camera.transform.position;
         Vector3 middle_pos = tiles[center, center].GetComponent<Tile>().transform.position;
         cam_pos.x = middle_pos.x;
         cam_pos.y = middle_pos.y;
         camera.transform.position = cam_pos;
 
-        expandField_left();
-        expandField_left();
-        expandField_left();
-        expandField_left();
         expandField_left();
         expandField_left();
         expandField_left();
@@ -91,8 +89,10 @@ public class GridManager : MonoBehaviour
         setRoad(center, center-3, 'u');
         setRoad(center, center+3, 'd');
         setRoad(center+3, center, 'l');
-        setTurret(3, center-1,center-1);
-        setTurret(3, center+1,center+1);
+        setTurret(1, center-1,center-1);
+        setTurret(2, center+1,center+1);
+        setTurret(3, center-1,center+1);
+        setTurret(3, center+1,center-1);
         //setSpawner(center-1, center+3);
         expandRoad();
         expandRoad();
@@ -117,7 +117,7 @@ public class GridManager : MonoBehaviour
     {
         
     }
-    void expandField_left()
+    public void expandField_left()
     {
         if (x_left==0) {return;}
         for (int i = y_bot; i<=y_top; i++)
@@ -127,7 +127,7 @@ public class GridManager : MonoBehaviour
         }
         x_left--;
     }
-    void expandField_right()
+    public void expandField_right()
     {
         if (x_right==maxDim) {return;}
         for (int i = y_bot; i<=y_top; i++)
@@ -136,7 +136,7 @@ public class GridManager : MonoBehaviour
         }
         x_right++;
     }
-    void expandField_up()
+    public void expandField_up()
     {
         if (y_top==maxDim) {return;}
         for (int i = x_left; i<=x_right; i++)
@@ -146,7 +146,7 @@ public class GridManager : MonoBehaviour
         }
         y_top++;
     }
-    void expandField_down()
+    public void expandField_down()
     {
         if (y_bot==0) {return;}
         for (int i = x_left; i<=x_right; i++)
@@ -183,7 +183,7 @@ public class GridManager : MonoBehaviour
     {
         return tiles[x,y];
     }
-    void expandRoad()
+    public void expandRoad()
     {
         int new_roads = 0;
 
@@ -274,14 +274,17 @@ public class GridManager : MonoBehaviour
         if (type==1)
         {
             GameObject turret = Instantiate(EB_prefab, pos, Quaternion.identity);
+            turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
         }
         if (type==2)
         {
             GameObject turret = Instantiate(PL_prefab, pos, Quaternion.identity);
+            turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
         }
         if (type==3)
         {
             GameObject turret = Instantiate(ET_prefab, pos, Quaternion.identity);
+            turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
         }
     }
     public void setFloor(int x, int y)

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8592591073166860455}
   - component: {fileID: 6059931256570133757}
   - component: {fileID: 8662191625749628506}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EMPTower
   m_TagString: Turret
   m_Icon: {fileID: 0}
