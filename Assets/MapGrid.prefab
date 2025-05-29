@@ -48,4 +48,12 @@ MonoBehaviour:
   en: {fileID: 3656454898757715196, guid: 900fe56fb64334bce85c1fec84f3a262, type: 3}
   camera: {fileID: 0}
   mapGrid: {fileID: 1617950863817998962}
+  EB_prefab: {fileID: 0}
+  PL_prefab: {fileID: 0}
+  ET_prefab: {fileID: 0}
+  resourceManager: {fileID: 0}
   maxDim: 15
+  baseBranchProbability: 0
+  baseBranchDecay: 0
+  baseSpawnerSpawnProbability: 0
+  baseSpawnerSpawnDecay: 0
