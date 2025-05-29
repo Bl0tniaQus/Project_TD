@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8173079773488027564}
   - component: {fileID: 3933924678697033243}
   - component: {fileID: 9093519420015550749}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PrecisionLaser
   m_TagString: Turret
   m_Icon: {fileID: 0}
@@ -112,10 +112,10 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

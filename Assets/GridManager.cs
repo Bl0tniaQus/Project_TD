@@ -50,17 +50,13 @@ public class GridManager : MonoBehaviour
         
         }
         tiles[center, center].GetComponent<Tile>().setType(1);
-
+        Debug.Log(center);
         Vector3 cam_pos = camera.transform.position;
         Vector3 middle_pos = tiles[center, center].GetComponent<Tile>().transform.position;
         cam_pos.x = middle_pos.x;
         cam_pos.y = middle_pos.y;
         camera.transform.position = cam_pos;
 
-        expandField_left();
-        expandField_left();
-        expandField_left();
-        expandField_left();
         expandField_left();
         expandField_left();
         expandField_left();
@@ -93,8 +89,10 @@ public class GridManager : MonoBehaviour
         setRoad(center, center-3, 'u');
         setRoad(center, center+3, 'd');
         setRoad(center+3, center, 'l');
-        setTurret(3, center-1,center-1);
-        setTurret(3, center+1,center+1);
+        setTurret(1, center-1,center-1);
+        setTurret(2, center+1,center+1);
+        setTurret(3, center-1,center+1);
+        setTurret(3, center+1,center-1);
         //setSpawner(center-1, center+3);
         expandRoad();
         expandRoad();
@@ -119,7 +117,7 @@ public class GridManager : MonoBehaviour
     {
         
     }
-    void expandField_left()
+    public void expandField_left()
     {
         if (x_left==0) {return;}
         for (int i = y_bot; i<=y_top; i++)
@@ -129,7 +127,7 @@ public class GridManager : MonoBehaviour
         }
         x_left--;
     }
-    void expandField_right()
+    public void expandField_right()
     {
         if (x_right==maxDim) {return;}
         for (int i = y_bot; i<=y_top; i++)
@@ -138,7 +136,7 @@ public class GridManager : MonoBehaviour
         }
         x_right++;
     }
-    void expandField_up()
+    public void expandField_up()
     {
         if (y_top==maxDim) {return;}
         for (int i = x_left; i<=x_right; i++)
@@ -148,7 +146,7 @@ public class GridManager : MonoBehaviour
         }
         y_top++;
     }
-    void expandField_down()
+    public void expandField_down()
     {
         if (y_bot==0) {return;}
         for (int i = x_left; i<=x_right; i++)
@@ -185,7 +183,7 @@ public class GridManager : MonoBehaviour
     {
         return tiles[x,y];
     }
-    void expandRoad()
+    public void expandRoad()
     {
         int new_roads = 0;
 
