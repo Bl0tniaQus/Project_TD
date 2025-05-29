@@ -85,6 +85,7 @@ public class Tile : MonoBehaviour
         this.direction = direction;
     }
     public void setCoords(int x,int y) {this.x = x; this.y = y;}
+    public (int, int) getCoords() {return (x,y);}
     public char getDirection() {return this.direction;}
     public short getType() {return this.type;}
     public void setCooldown(float cd) {this.cooldown = cd;}

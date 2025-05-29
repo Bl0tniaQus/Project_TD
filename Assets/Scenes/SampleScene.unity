@@ -285,7 +285,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1761284949}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &153384330
@@ -1970,7 +1971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.8784314}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2006,7 +2007,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2023,7 +2024,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3291,6 +3292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerBuildPanel: {fileID: 994287597}
   towerUpgradePanel: {fileID: 993675793}
+  mapGrid: {fileID: 153384327}
   buyEnergyBlasterBtn: {fileID: 279860622}
   buyPrecisionLaserBtn: {fileID: 1545940209}
   buyEMPTowerBtn: {fileID: 1591370175}
@@ -3310,4 +3312,3 @@ SceneRoots:
   - {fileID: 1782751295}
   - {fileID: 1553920898}
   - {fileID: 1094390728}
-  - {fileID: 1761284949}
