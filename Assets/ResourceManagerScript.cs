@@ -43,4 +43,5 @@ public class ResourceManagerScript : MonoBehaviour
     public void takeDamage(int damage) {this.hp-=damage; if (this.hp<0) {this.hp=0;}}
     public void increaseScore(int s) {  this.money+=s; this.score+=s;}
     public int getLevel() {return this.level;}
+    public void spendMoney(int m) {this.money -= m;}
 }

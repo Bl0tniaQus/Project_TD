@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grid: {fileID: 0}
+  uiManager: {fileID: 0}
 --- !u!61 &-5668897795135440978
 BoxCollider2D:
   m_ObjectHideFlags: 0

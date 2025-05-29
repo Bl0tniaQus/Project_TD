@@ -102,7 +102,7 @@ MonoBehaviour:
   projectile: {fileID: 3644850093654332714, guid: 45a89614ad505972b8ebf52382fc8209, type: 3}
   damage: 1
   speed: 0.1
-  ttl: 5
+  ttl: 2.5
   piercing: 0
 --- !u!58 &6512211953442500783
 CircleCollider2D:

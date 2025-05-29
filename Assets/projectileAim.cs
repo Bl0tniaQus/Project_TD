@@ -92,7 +92,7 @@ public class projectileAim : MonoBehaviour
             this.initialCooldown-=0.2f;
             this.damage+=3;
             this.speed+=0.05f;
-            this.ttl+=2.5f;
+            //this.ttl+=1.5f;
             this.GetComponent<CircleCollider2D>().radius += 2;
         }
         if (name=="Precision Laser(Clone)")
@@ -100,7 +100,7 @@ public class projectileAim : MonoBehaviour
             this.initialCooldown-=0.2f;
             this.damage+=5;
             this.speed+=0.2f;
-            this.ttl+=1;
+            //this.ttl+=1;
             this.piercing+=1;
             this.GetComponent<CircleCollider2D>().radius += 3;
         }

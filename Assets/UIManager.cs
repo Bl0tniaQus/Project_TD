@@ -8,7 +8,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject towerBuildPanel;
     public GameObject towerUpgradePanel;
-
+    public GameObject mapGrid;
+    public GameObject resourceManager;
 
 
     [Header("Build Panel buttons")]
@@ -75,19 +76,37 @@ public class UIManager : MonoBehaviour
 
     private void BuyEnergyBlaster()
     {
-        CloseAllPanels();
+        if (resourceManager.GetComponent<ResourceManagerScript>().getMoney()>=50)
+        {
+            (int x, int y) = this.tile.GetComponent<Tile>().getCoords();
+            this.mapGrid.GetComponent<GridManager>().setTurret(1, x,y);
+            CloseAllPanels();
+        }
+        
 
     }
 
     private void BuyPrecisionLaser()
     {
-        CloseAllPanels();
+         if (resourceManager.GetComponent<ResourceManagerScript>().getMoney()>=50)
+        {
+            (int x, int y) = this.tile.GetComponent<Tile>().getCoords();
+            this.mapGrid.GetComponent<GridManager>().setTurret(2, x,y);
+            resourceManager.GetComponent<ResourceManagerScript>().spendMoney(50);
+            CloseAllPanels();
+        }
 
     }
 
      private void BuyEMPTower()
     {
-        CloseAllPanels();
+         if (resourceManager.GetComponent<ResourceManagerScript>().getMoney()>=50)
+        {
+            (int x, int y) = this.tile.GetComponent<Tile>().getCoords();
+            this.mapGrid.GetComponent<GridManager>().setTurret(3, x,y);
+            resourceManager.GetComponent<ResourceManagerScript>().spendMoney(50);
+            CloseAllPanels();
+        }
 
     }
 
