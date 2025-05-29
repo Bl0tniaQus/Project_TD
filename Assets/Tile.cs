@@ -5,7 +5,9 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public GameObject grid;
+    public GameObject uiManager;
     GameObject resourceManager;
+    GameObject turret;
     private short type; //0 - empty, 1 - core, 2 - grass, 3 - road, 4 - spawner, 5 - turrets
     private char direction;
     private int x, y;
@@ -27,7 +29,7 @@ public class Tile : MonoBehaviour
     }
     void OnMouseDown()
     {
-        Debug.LogFormat("{0}, {1}",x,y);
+        this.grid.GetComponent<GridManager>().highlightField(this.gameObject);
     }
     void FixedUpdate()
     {
@@ -126,4 +128,6 @@ public class Tile : MonoBehaviour
     }
     public void setResourceManager(GameObject manager)
     {this.resourceManager = manager;}
+    public void setTurret(GameObject t)
+    {this.turret = t;}
 }

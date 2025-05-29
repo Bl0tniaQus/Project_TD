@@ -12,6 +12,7 @@ public class GridManager : MonoBehaviour
     public GameObject PL_prefab;
     public GameObject ET_prefab;
     public GameObject resourceManager;
+    public GameObject uiManager;
     public int maxDim;
     public int baseBranchProbability;
     public float baseBranchDecay;
@@ -23,6 +24,7 @@ public class GridManager : MonoBehaviour
     private int neutralLevel = 0;
     private int center;
     private int x_left,x_right,y_bot,y_top;
+    private GameObject highlightedField = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -275,16 +277,19 @@ public class GridManager : MonoBehaviour
         {
             GameObject turret = Instantiate(EB_prefab, pos, Quaternion.identity);
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
+            tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
         if (type==2)
         {
             GameObject turret = Instantiate(PL_prefab, pos, Quaternion.identity);
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
+            tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
         if (type==3)
         {
             GameObject turret = Instantiate(ET_prefab, pos, Quaternion.identity);
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
+            tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
     }
     public void setFloor(int x, int y)
@@ -292,5 +297,30 @@ public class GridManager : MonoBehaviour
         tiles[x,y].GetComponent<Tile>().setType(2);
         int r = Random.Range(0,5);
         tiles[x,y].GetComponent<Animator>().SetInteger("Type", 20+r);
+    }
+    public void highlightField(GameObject f)
+    {
+        if (this.highlightedField!=null) {
+            this.highlightedField.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+
+        this.highlightedField = f;
+        this.highlightedField.GetComponent<SpriteRenderer>().color = Color.yellow;
+
+        short type = f.GetComponent<Tile>().getType();
+        if (type==5)
+        {
+            this.uiManager.GetComponent<UIManager>().ShowUpgradePanel();
+        }
+        else if (type==2)
+        {
+            this.uiManager.GetComponent<UIManager>().ShowBuildPanel();
+        }
+        else 
+        {
+            this.uiManager.GetComponent<UIManager>().CloseAllPanels();
+        }
+
+
     }
 }
