@@ -25,6 +25,10 @@ public class Tile : MonoBehaviour
     {
         
     }
+    void OnMouseDown()
+    {
+        Debug.LogFormat("{0}, {1}",x,y);
+    }
     void FixedUpdate()
     {
         

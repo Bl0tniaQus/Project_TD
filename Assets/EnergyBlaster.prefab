@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6142401089866401310}
   - component: {fileID: -7869276909396586583}
   - component: {fileID: 6512211953442500783}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnergyBlaster
   m_TagString: Turret
   m_Icon: {fileID: 0}
