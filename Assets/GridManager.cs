@@ -23,6 +23,7 @@ public class GridManager : MonoBehaviour
     private int neutralLevel = 0;
     private int center;
     private int x_left,x_right,y_bot,y_top;
+    private GameObject highlightedField = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -275,16 +276,19 @@ public class GridManager : MonoBehaviour
         {
             GameObject turret = Instantiate(EB_prefab, pos, Quaternion.identity);
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
+            tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
         if (type==2)
         {
             GameObject turret = Instantiate(PL_prefab, pos, Quaternion.identity);
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
+            tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
         if (type==3)
         {
             GameObject turret = Instantiate(ET_prefab, pos, Quaternion.identity);
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
+            tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
     }
     public void setFloor(int x, int y)
@@ -292,5 +296,14 @@ public class GridManager : MonoBehaviour
         tiles[x,y].GetComponent<Tile>().setType(2);
         int r = Random.Range(0,5);
         tiles[x,y].GetComponent<Animator>().SetInteger("Type", 20+r);
+    }
+    public void highlightField(GameObject f)
+    {
+        if (this.highlightedField!=null) {
+            this.highlightedField.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+
+        this.highlightedField = f;
+        this.highlightedField.GetComponent<SpriteRenderer>().color = Color.yellow;
     }
 }
