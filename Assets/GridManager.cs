@@ -12,6 +12,7 @@ public class GridManager : MonoBehaviour
     public GameObject PL_prefab;
     public GameObject ET_prefab;
     public GameObject resourceManager;
+    public GameObject uiManager;
     public int maxDim;
     public int baseBranchProbability;
     public float baseBranchDecay;
@@ -305,5 +306,21 @@ public class GridManager : MonoBehaviour
 
         this.highlightedField = f;
         this.highlightedField.GetComponent<SpriteRenderer>().color = Color.yellow;
+
+        short type = f.GetComponent<Tile>().getType();
+        if (type==5)
+        {
+            this.uiManager.GetComponent<UIManager>().ShowUpgradePanel();
+        }
+        else if (type==2)
+        {
+            this.uiManager.GetComponent<UIManager>().ShowBuildPanel();
+        }
+        else 
+        {
+            this.uiManager.GetComponent<UIManager>().CloseAllPanels();
+        }
+
+
     }
 }

@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     public GameObject upgradeTowerBtn;
     public GameObject addTowerBtn;
 
+    GameObject tile = null;
+
+
     void Start()
     {
         ResizePanel(towerBuildPanel);
@@ -35,18 +38,20 @@ public class UIManager : MonoBehaviour
         CloseAllPanels();
     }
 
-    public void ShowBuildPanel()
+    public void ShowBuildPanel(GameObject obj)
     {
         CloseAllPanels();
         towerBuildPanel.SetActive(true);
         SetMainButtonsVisible(false);
+        this.tile = obj;
     }
 
-    public void ShowUpgradePanel()
+    public void ShowUpgradePanel(GameObject obj)
     {
         CloseAllPanels();
         towerUpgradePanel.SetActive(true);
         SetMainButtonsVisible(false);
+        this.tile = obj;
     }
 
     public void CloseAllPanels()
