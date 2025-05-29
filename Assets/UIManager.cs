@@ -33,7 +33,11 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-     
+        if(Input.GetMouseButtonDown(1)) 
+        {
+                CloseAllPanels();
+                mapGrid.GetComponent<GridManager>().deHighlightField();
+        }
     }
 
 
