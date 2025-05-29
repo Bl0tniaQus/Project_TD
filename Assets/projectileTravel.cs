@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class projectileTravel : MonoBehaviour
 {
-    public float speed;
-    public float ttl;
-    public int damage;
-    public int piercing;
+    float speed;
+    float ttl;
+    int damage;
+    int piercing;
     Vector3 target;
     float lifetime = 0;
     GameObject resourceManager;
@@ -54,4 +54,12 @@ public class projectileTravel : MonoBehaviour
     }
     public void setResourceManager(GameObject manager)
     {this.resourceManager = manager;}
+    public float getSpeed() {return this.speed;}
+    public void setSpeed(float s) {this.speed = s;}
+    public float getTtl() {return this.ttl;}
+    public void setTtl(float t) {this.ttl = t;}
+    public int getDamage() {return this.damage;}
+    public void setDamage(int d) {this.damage = d;}
+    public int getPiercing() {return this.piercing;}
+    public void setPiercing(int p) {this.piercing = p;}
 }
