@@ -180,6 +180,7 @@ public class GridManager : MonoBehaviour
     void setSpawner(int x, int y)
     {
         tiles[x,y].GetComponent<Tile>().setType(4);
+        tiles[x,y].GetComponent<SpriteRenderer>().color = Color.green;
     }
     public Tile getTile(int x, int y)
     {
