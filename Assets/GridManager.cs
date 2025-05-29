@@ -180,6 +180,7 @@ public class GridManager : MonoBehaviour
     void setSpawner(int x, int y)
     {
         tiles[x,y].GetComponent<Tile>().setType(4);
+        tiles[x,y].GetComponent<SpriteRenderer>().color = Color.green;
     }
     public Tile getTile(int x, int y)
     {
@@ -310,11 +311,11 @@ public class GridManager : MonoBehaviour
         short type = f.GetComponent<Tile>().getType();
         if (type==5)
         {
-            this.uiManager.GetComponent<UIManager>().ShowUpgradePanel();
+            this.uiManager.GetComponent<UIManager>().ShowUpgradePanel(f);
         }
         else if (type==2)
         {
-            this.uiManager.GetComponent<UIManager>().ShowBuildPanel();
+            this.uiManager.GetComponent<UIManager>().ShowBuildPanel(f);
         }
         else 
         {
