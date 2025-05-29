@@ -1,63 +1,119 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
     public GameObject towerBuildPanel;
     public GameObject towerUpgradePanel;
+    public GameObject mapGrid;
+    public GameObject resourceManager;
 
-    public GameObject upgradeTowerBtn;
-    public GameObject addTowerBtn;
 
-    void Start()
-    {
-        ResizePanel(towerBuildPanel);
-        ResizePanel(towerUpgradePanel);
-    }
-    private void ResizePanel(GameObject panel)
-    {
-        RectTransform rt = panel.GetComponent<RectTransform>();
-        float width = Screen.width * 0.25f;
-        float height = rt.sizeDelta.y; // zachowujemy obecną wysokość
-    
-        rt.anchorMin = new Vector2(0, 0.5f); // lewa środkowa kotwica
-        rt.anchorMax = new Vector2(0, 0.5f);
-        rt.pivot = new Vector2(0, 0.5f);     // obrót z lewej
-        rt.sizeDelta = new Vector2(width, height);
-        rt.anchoredPosition = new Vector2(0, 0); // przyklejony do lewej krawędzi
-    }
+    [Header("Build Panel buttons")]
+    [SerializeField] private Button buyEnergyBlasterBtn;
+    [SerializeField] private Button buyPrecisionLaserBtn;
+    [SerializeField] private Button buyEMPTowerBtn;
+    [SerializeField] private Button closePopupBtn;
+
+    [Header("Upgrade Panel buttons")]
+    [SerializeField] private Button upgradeTowerBtn;
+    [SerializeField] private Button closePopup2Btn;
+    [SerializeField] private TextMeshProUGUI towerUpgradeCost;
+    [SerializeField] private TextMeshProUGUI towerLevel;
+    [SerializeField] private TextMeshProUGUI towerName;
+
+
+
+    GameObject tile = null;
+
+
+
 
 
     private void Awake()
     {
         if (Instance == null) Instance = this;
         CloseAllPanels();
+        SetupButtonListeners();
     }
 
-    public void ShowBuildPanel()
+     private void SetupButtonListeners()
+    {
+        // Build Panel
+        buyEnergyBlasterBtn.onClick.AddListener(BuyEnergyBlaster);
+        buyPrecisionLaserBtn.onClick.AddListener(BuyPrecisionLaser);
+        buyEMPTowerBtn.onClick.AddListener(BuyEMPTower);
+        closePopupBtn.onClick.AddListener(CloseAllPanels);
+
+        // Upgrade Panel
+        upgradeTowerBtn.onClick.AddListener(UpgradeTower);
+        closePopup2Btn.onClick.AddListener(CloseAllPanels);
+    }
+
+    public void ShowBuildPanel(GameObject obj)
     {
         CloseAllPanels();
         towerBuildPanel.SetActive(true);
-        SetMainButtonsVisible(false);
+        this.tile = obj;
     }
 
-    public void ShowUpgradePanel()
+    public void ShowUpgradePanel(GameObject obj)
     {
         CloseAllPanels();
         towerUpgradePanel.SetActive(true);
-        SetMainButtonsVisible(false);
+        this.tile = obj;
     }
 
     public void CloseAllPanels()
     {
         towerBuildPanel.SetActive(false);
         towerUpgradePanel.SetActive(false);
-        SetMainButtonsVisible(true);
     }
-    private void SetMainButtonsVisible(bool visible)
+  
+
+    private void BuyEnergyBlaster()
     {
-        addTowerBtn.SetActive(visible);
-        upgradeTowerBtn.SetActive(visible);
+        if (resourceManager.GetComponent<ResourceManagerScript>().getMoney()>=50)
+        {
+            (int x, int y) = this.tile.GetComponent<Tile>().getCoords();
+            this.mapGrid.GetComponent<GridManager>().setTurret(1, x,y);
+            CloseAllPanels();
+        }
+        
+
     }
+
+    private void BuyPrecisionLaser()
+    {
+         if (resourceManager.GetComponent<ResourceManagerScript>().getMoney()>=50)
+        {
+            (int x, int y) = this.tile.GetComponent<Tile>().getCoords();
+            this.mapGrid.GetComponent<GridManager>().setTurret(2, x,y);
+            resourceManager.GetComponent<ResourceManagerScript>().spendMoney(50);
+            CloseAllPanels();
+        }
+
+    }
+
+     private void BuyEMPTower()
+    {
+         if (resourceManager.GetComponent<ResourceManagerScript>().getMoney()>=50)
+        {
+            (int x, int y) = this.tile.GetComponent<Tile>().getCoords();
+            this.mapGrid.GetComponent<GridManager>().setTurret(3, x,y);
+            resourceManager.GetComponent<ResourceManagerScript>().spendMoney(50);
+            CloseAllPanels();
+        }
+
+    }
+
+    private void UpgradeTower()
+    {
+                CloseAllPanels();
+
+    }
+
 }

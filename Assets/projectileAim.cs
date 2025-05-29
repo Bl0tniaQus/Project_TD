@@ -11,6 +11,11 @@ public class projectileAim : MonoBehaviour
     GameObject resourceManager;
     float x,y;
     float closestDist = -1.0f;
+    short level;
+    public int damage;
+    public float speed;
+    public float ttl;
+    public int piercing;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +44,10 @@ public class projectileAim : MonoBehaviour
                 pos.z = -5;
                 GameObject bullet = Instantiate(projectile, pos, Quaternion.identity);
                 bullet.GetComponent<projectileTravel>().setResourceManager(resourceManager);
+                bullet.GetComponent<projectileTravel>().setDamage(damage);
+                bullet.GetComponent<projectileTravel>().setSpeed(speed);
+                bullet.GetComponent<projectileTravel>().setTtl(ttl);
+                bullet.GetComponent<projectileTravel>().setPiercing(piercing);
                 bullet.GetComponent<projectileTravel>().setTarget((closestEnemy.transform.position - this.transform.position).normalized);
                 closestEnemy=null;
                 closestDist=-1.0f;
@@ -73,4 +82,35 @@ public class projectileAim : MonoBehaviour
         }
     }
     public void setResourceManager(GameObject manager) {this.resourceManager = manager;}
+    public short getLevel() {return this.level;}
+    public void upgrade()
+    {
+        string name = this.name;
+
+        if (name=="Energy Blaster(Clone)")
+        {
+            this.initialCooldown-=0.2f;
+            this.damage+=3;
+            this.speed+=0.05f;
+            //this.ttl+=1.5f;
+            this.GetComponent<CircleCollider2D>().radius += 2;
+        }
+        if (name=="Precision Laser(Clone)")
+        {
+            this.initialCooldown-=0.2f;
+            this.damage+=5;
+            this.speed+=0.2f;
+            //this.ttl+=1;
+            this.piercing+=1;
+            this.GetComponent<CircleCollider2D>().radius += 3;
+        }
+        if (name=="EMPTower(Clone)")
+        {
+            this.damage+=1;
+            this.speed+=2.5f;
+            this.GetComponent<CircleCollider2D>().radius += 1.3f;
+        }
+        
+
+    }
 }

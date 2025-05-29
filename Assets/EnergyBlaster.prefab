@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6142401089866401310}
   - component: {fileID: -7869276909396586583}
   - component: {fileID: 6512211953442500783}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnergyBlaster
   m_TagString: Turret
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.21297847, g: 0.6570492, b: 0.2297213, a: 1}
   m_FlipX: 0
@@ -100,6 +100,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialCooldown: 1.2
   projectile: {fileID: 3644850093654332714, guid: 45a89614ad505972b8ebf52382fc8209, type: 3}
+  damage: 1
+  speed: 0.1
+  ttl: 2.5
+  piercing: 0
 --- !u!58 &6512211953442500783
 CircleCollider2D:
   m_ObjectHideFlags: 0
