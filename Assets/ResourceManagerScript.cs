@@ -27,14 +27,18 @@ public class ResourceManagerScript : MonoBehaviour
                 scoreGoalBase = scoreGoalBase * scoreFactor;
                 scoreGoal = scoreGoal + (long)(scoreGoalBase);
                 level++;
-                this.mapGrid.GetComponent<GridManager>().expandRoad();
-                int r = Random.Range(1,5);
-                if (level>0 && level%2==0) {
+                    int r = Random.Range(1,5);
                     if (r==1) {this.mapGrid.GetComponent<GridManager>().expandField_down();}
                     if (r==2) {this.mapGrid.GetComponent<GridManager>().expandField_up();}
                     if (r==3) {this.mapGrid.GetComponent<GridManager>().expandField_left();}
                     if (r==4) {this.mapGrid.GetComponent<GridManager>().expandField_right();}
-                }
+                
+                
+                
+                this.mapGrid.GetComponent<GridManager>().expandRoad();
+                
+                
+                
         }
     }
     public long getScore() {return this.score;}
