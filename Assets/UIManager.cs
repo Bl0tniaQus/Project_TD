@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
@@ -30,7 +31,10 @@ public class UIManager : MonoBehaviour
     GameObject tile = null;
 
 
-
+    void Update()
+    {
+     
+    }
 
 
     private void Awake()
