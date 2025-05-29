@@ -1,5 +1,7 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
@@ -7,8 +9,22 @@ public class UIManager : MonoBehaviour
     public GameObject towerBuildPanel;
     public GameObject towerUpgradePanel;
 
-    public GameObject upgradeTowerBtn;
-    public GameObject addTowerBtn;
+
+
+    [Header("Build Panel buttons")]
+    [SerializeField] private Button buyEnergyBlasterBtn;
+    [SerializeField] private Button buyPrecisionLaserBtn;
+    [SerializeField] private Button buyEMPTowerBtn;
+    [SerializeField] private Button closePopupBtn;
+
+    [Header("Upgrade Panel buttons")]
+    [SerializeField] private Button upgradeTowerBtn;
+    [SerializeField] private Button closePopup2Btn;
+    [SerializeField] private TextMeshProUGUI towerUpgradeCost;
+    [SerializeField] private TextMeshProUGUI towerLevel;
+    [SerializeField] private TextMeshProUGUI towerName;
+
+
 
     GameObject tile = null;
 
@@ -20,13 +36,26 @@ public class UIManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         CloseAllPanels();
+        SetupButtonListeners();
+    }
+
+     private void SetupButtonListeners()
+    {
+        // Build Panel
+        buyEnergyBlasterBtn.onClick.AddListener(BuyEnergyBlaster);
+        buyPrecisionLaserBtn.onClick.AddListener(BuyPrecisionLaser);
+        buyEMPTowerBtn.onClick.AddListener(BuyEMPTower);
+        closePopupBtn.onClick.AddListener(CloseAllPanels);
+
+        // Upgrade Panel
+        upgradeTowerBtn.onClick.AddListener(UpgradeTower);
+        closePopup2Btn.onClick.AddListener(CloseAllPanels);
     }
 
     public void ShowBuildPanel(GameObject obj)
     {
         CloseAllPanels();
         towerBuildPanel.SetActive(true);
-        SetMainButtonsVisible(false);
         this.tile = obj;
     }
 
@@ -34,7 +63,6 @@ public class UIManager : MonoBehaviour
     {
         CloseAllPanels();
         towerUpgradePanel.SetActive(true);
-        SetMainButtonsVisible(false);
         this.tile = obj;
     }
 
@@ -42,11 +70,31 @@ public class UIManager : MonoBehaviour
     {
         towerBuildPanel.SetActive(false);
         towerUpgradePanel.SetActive(false);
-        SetMainButtonsVisible(true);
     }
-    private void SetMainButtonsVisible(bool visible)
+  
+
+    private void BuyEnergyBlaster()
     {
-        addTowerBtn.SetActive(visible);
-        upgradeTowerBtn.SetActive(visible);
+        CloseAllPanels();
+
     }
+
+    private void BuyPrecisionLaser()
+    {
+        CloseAllPanels();
+
+    }
+
+     private void BuyEMPTower()
+    {
+        CloseAllPanels();
+
+    }
+
+    private void UpgradeTower()
+    {
+                CloseAllPanels();
+
+    }
+
 }
