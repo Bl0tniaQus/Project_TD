@@ -193,10 +193,15 @@ public class GridManager : MonoBehaviour
         for (int i = roadList.Count-1; i>7; i--)
         {
             (int x, int y) = roadList[i];
-
-            char dir = getRandomDirection();
+            int contProb = Random.Range(1,11);
+            char dir;
+            if (contProb <= 2) {
+                dir = getOppositeDirection(getTile(x,y).GetComponent<Tile>().getDirection());
+                }
+            else {dir = getRandomDirection();}
             
-            int prob = Random.Range(0,100);
+            
+            int prob = Random.Range(0,101);
             float branchProb = weightedProbability(baseBranchProbability, baseBranchDecay, new_roads);
             (int x_new, int y_new) = shiftCoords(x,y,dir);
             if (checkFreeField(x_new,y_new) && prob <= branchProb)
@@ -322,6 +327,10 @@ public class GridManager : MonoBehaviour
             this.uiManager.GetComponent<UIManager>().CloseAllPanels();
         }
 
-
+    }
+    public void deHighlightField()
+    {
+        this.highlightedField.GetComponent<SpriteRenderer>().color = Color.white;
+        this.highlightedField = null;
     }
 }
