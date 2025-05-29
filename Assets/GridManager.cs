@@ -310,11 +310,11 @@ public class GridManager : MonoBehaviour
         short type = f.GetComponent<Tile>().getType();
         if (type==5)
         {
-            this.uiManager.GetComponent<UIManager>().ShowUpgradePanel();
+            this.uiManager.GetComponent<UIManager>().ShowUpgradePanel(f);
         }
         else if (type==2)
         {
-            this.uiManager.GetComponent<UIManager>().ShowBuildPanel();
+            this.uiManager.GetComponent<UIManager>().ShowBuildPanel(f);
         }
         else 
         {
