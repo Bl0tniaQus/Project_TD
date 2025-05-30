@@ -50,5 +50,8 @@ public class CameraMove : MonoBehaviour
             Camera.main.transform.position = Origin - Difference;
         }
 
+        if (Input.GetMouseButton(1))
+            Camera.main.transform.position = ResetCamera;
+
     }
 }
