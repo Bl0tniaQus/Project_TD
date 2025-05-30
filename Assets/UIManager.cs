@@ -42,7 +42,11 @@ public class UIManager : MonoBehaviour
             scrapText.text = $"Scrap: {rm.getMoney()}";
             scoreText.text = $"Total Score: {rm.getScore()}";
         }
-
+        if(Input.GetMouseButtonDown(1)) 
+        {
+                CloseAllPanels();
+                mapGrid.GetComponent<GridManager>().deHighlightField();
+        }
         
     }
 

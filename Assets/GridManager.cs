@@ -330,4 +330,9 @@ public class GridManager : MonoBehaviour
 
 
     }
+    public void deHighlightField()
+    {
+        this.highlightedField.GetComponent<SpriteRenderer>().color = Color.white;
+        this.highlightedField = null;
+    }
 }
