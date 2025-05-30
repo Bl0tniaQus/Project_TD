@@ -137,4 +137,5 @@ public class Tile : MonoBehaviour
     {this.resourceManager = manager;}
     public void setTurret(GameObject t)
     {this.turret = t;}
+    public GameObject getTurret() {return this.turret;}
 }
