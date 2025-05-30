@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
 
     GameObject tile = null;
-
+    private int cost = 0;
 
     void Update()
     {
@@ -76,6 +76,7 @@ public class UIManager : MonoBehaviour
         CloseAllPanels();
         towerBuildPanel.SetActive(true);
         this.tile = obj;
+        this.cost = 50;
     }
 
     public void ShowUpgradePanel(GameObject obj)
@@ -83,12 +84,18 @@ public class UIManager : MonoBehaviour
         CloseAllPanels();
         towerUpgradePanel.SetActive(true);
         this.tile = obj;
+        int level = obj.GetComponent<Tile>().getTurret().GetComponent<projectileAim>().getLevel();
+        
+        if (level == 1) {this.cost = 500;}
+        if (level == 2) {this.cost = 5000;}
+        if (level == 3) {this.cost = -1000;}
     }
 
     public void CloseAllPanels()
     {
         towerBuildPanel.SetActive(false);
         towerUpgradePanel.SetActive(false);
+        this.cost = 0;
     }
   
 
@@ -130,7 +137,15 @@ public class UIManager : MonoBehaviour
 
     private void UpgradeTower()
     {
-                CloseAllPanels();
+                int level = this.tile.GetComponent<Tile>().getTurret().GetComponent<projectileAim>().getLevel();
+                if (this.cost <= this.resourceManager.GetComponent<ResourceManagerScript>().getMoney() && level<3)
+                {
+                        this.resourceManager.GetComponent<ResourceManagerScript>().spendMoney(this.cost);
+                        this.tile.GetComponent<Tile>().getTurret().GetComponent<projectileAim>().upgrade();
+                        CloseAllPanels();
+                }
+                
+                
 
     }
 

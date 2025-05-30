@@ -276,25 +276,28 @@ public class GridManager : MonoBehaviour
     public void setTurret(short type, int x, int y)
     {
          tiles[x,y].GetComponent<Tile>().setType(5);
-         tiles[x,y].GetComponent<Animator>().SetInteger("Type", 5);
+         tiles[x,y].GetComponent<Animator>().SetInteger("Type", 51);
          Vector3 pos = tiles[x,y].GetComponent<Tile>().transform.position;
          pos.z = -9;
         if (type==1)
         {
             GameObject turret = Instantiate(EB_prefab, pos, Quaternion.identity);
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
+            turret.GetComponent<projectileAim>().setTile(tiles[x,y]);
             tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
         if (type==2)
         {
             GameObject turret = Instantiate(PL_prefab, pos, Quaternion.identity);
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
+            turret.GetComponent<projectileAim>().setTile(tiles[x,y]);
             tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
         if (type==3)
         {
             GameObject turret = Instantiate(ET_prefab, pos, Quaternion.identity);
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
+            turret.GetComponent<projectileAim>().setTile(tiles[x,y]);
             tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
         
