@@ -9,9 +9,10 @@ public class projectileAim : MonoBehaviour
     float cooldown;
     GameObject closestEnemy = null;
     GameObject resourceManager;
+    private Tile tile;
     float x,y;
     float closestDist = -1.0f;
-    short level;
+    short level = 1;
     public int damage;
     public float speed;
     public float ttl;
@@ -83,10 +84,42 @@ public class projectileAim : MonoBehaviour
     }
     public void setResourceManager(GameObject manager) {this.resourceManager = manager;}
     public short getLevel() {return this.level;}
+    public void setTile(Tile t) {this.tile = t;}
     public void upgrade()
     {
-        string name = this.name;
+        
+        if (this.level<3)
+        {
+            string name = this.name;
+            this.level++;
+            this.tile.GetComponent<Animator>().SetInteger("Type", 50+level);
+            if (name=="Energy Blaster(Clone)")
+            {
+                this.initialCooldown-=0.2f;
+                this.damage+=3;
+                this.speed+=0.05f;
+                //this.ttl+=1.5f;
+                this.GetComponent<CircleCollider2D>().radius += 2;
+            }
+            if (name=="Precision Laser(Clone)")
+            {
+                this.initialCooldown-=0.2f;
+                this.damage+=5;
+                this.speed+=0.2f;
+                //this.ttl+=1;
+                this.piercing+=1;
+                this.GetComponent<CircleCollider2D>().radius += 3;
+            }
+            if (name=="EMPTower(Clone)")
+            {
+                this.damage+=1;
+                this.speed+=2.5f;
+                this.GetComponent<CircleCollider2D>().radius += 1.3f;
+            }
 
+
+
+        }
         if (name=="Energy Blaster(Clone)")
         {
             this.initialCooldown-=0.2f;
@@ -97,7 +130,7 @@ public class projectileAim : MonoBehaviour
         }
         if (name=="Precision Laser(Clone)")
         {
-            this.initialCooldown-=0.2f;
+            this.initialCooldown-=0.3f;
             this.damage+=5;
             this.speed+=0.2f;
             //this.ttl+=1;
@@ -107,8 +140,8 @@ public class projectileAim : MonoBehaviour
         if (name=="EMPTower(Clone)")
         {
             this.damage+=1;
-            this.speed+=2.5f;
-            this.GetComponent<CircleCollider2D>().radius += 1.3f;
+            this.speed+=0.83f;
+            this.GetComponent<CircleCollider2D>().radius += 0.5f;
         }
         
 
