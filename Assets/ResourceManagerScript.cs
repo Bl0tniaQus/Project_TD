@@ -6,12 +6,14 @@ public class ResourceManagerScript : MonoBehaviour
 {
 
     private long score = 0;
+
     private long money = 50;
     private int hp = 100;
     public double scoreFactor;
     private long scoreGoal = 10;
     private double scoreGoalBase = 10;
     private int level = 0;
+    private int coreState = 0;
     public GameObject mapGrid;
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,27 @@ public class ResourceManagerScript : MonoBehaviour
                 
                 
                 
+        }
+        if (hp<=70&&hp>=31&&coreState==0)
+        {
+                this.coreState = 1;
+                int center = mapGrid.GetComponent<GridManager>().getCenter();
+                Tile tile = mapGrid.GetComponent<GridManager>().getTile(center, center);
+                tile.GetComponent<Animator>().SetInteger("Type", 11);
+        }
+        if (hp<=30&&hp>=10&&coreState==1)
+        {
+                this.coreState = 2;
+                int center = mapGrid.GetComponent<GridManager>().getCenter();
+                Tile tile = mapGrid.GetComponent<GridManager>().getTile(center, center);
+                tile.GetComponent<Animator>().SetInteger("Type", 12);
+        }
+        if (hp<10&&coreState==2)
+        {
+                this.coreState = 3;
+                int center = mapGrid.GetComponent<GridManager>().getCenter();
+                Tile tile = mapGrid.GetComponent<GridManager>().getTile(center, center);
+                tile.GetComponent<Animator>().SetInteger("Type", 13);
         }
     }
     public long getScore() {return this.score;}

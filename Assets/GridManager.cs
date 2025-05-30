@@ -91,10 +91,10 @@ public class GridManager : MonoBehaviour
         setRoad(center, center-3, 'u');
         setRoad(center, center+3, 'd');
         setRoad(center+3, center, 'l');
-        setTurret(1, center-1,center-1);
-        setTurret(2, center+1,center+1);
-        setTurret(3, center-1,center+1);
-        setTurret(3, center+1,center-1);
+        //setTurret(1, center-1,center-1);
+       // setTurret(2, center+1,center+1);
+        //setTurret(3, center-1,center+1);
+        //setTurret(3, center+1,center-1);
         //setSpawner(center-1, center+3);
         expandRoad();
         expandRoad();
@@ -119,6 +119,7 @@ public class GridManager : MonoBehaviour
     {
         
     }
+    public int getCenter() {return this.center;}
     public void expandField_left()
     {
         if (x_left==0) {return;}
@@ -180,7 +181,10 @@ public class GridManager : MonoBehaviour
     void setSpawner(int x, int y)
     {
         tiles[x,y].GetComponent<Tile>().setType(4);
-        tiles[x,y].GetComponent<SpriteRenderer>().color = Color.green;
+
+        int r = Random.Range(0,4);
+        tiles[x,y].GetComponent<Animator>().SetInteger("Type", 40+r);
+        //tiles[x,y].GetComponent<SpriteRenderer>().color = Color.green;
     }
     public Tile getTile(int x, int y)
     {
@@ -277,6 +281,7 @@ public class GridManager : MonoBehaviour
     public void setTurret(short type, int x, int y)
     {
          tiles[x,y].GetComponent<Tile>().setType(5);
+         tiles[x,y].GetComponent<Animator>().SetInteger("Type", 5);
          Vector3 pos = tiles[x,y].GetComponent<Tile>().transform.position;
          pos.z = -9;
         if (type==1)
@@ -297,6 +302,7 @@ public class GridManager : MonoBehaviour
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
             tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
+        
     }
     public void setFloor(int x, int y)
     {
