@@ -56,8 +56,7 @@ public class Tile : MonoBehaviour
             }
         else if (type==1) {
             
-            //this.GetComponent<SpriteRenderer>().color = new Color(255,0,0);
-            
+            this.GetComponent<Animator>().SetInteger("Type", 10);
             }
         else if (type==2) {
             
