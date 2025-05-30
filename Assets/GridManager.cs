@@ -91,10 +91,10 @@ public class GridManager : MonoBehaviour
         setRoad(center, center-3, 'u');
         setRoad(center, center+3, 'd');
         setRoad(center+3, center, 'l');
-        setTurret(1, center-1,center-1);
-        setTurret(2, center+1,center+1);
-        setTurret(3, center-1,center+1);
-        setTurret(3, center+1,center-1);
+        //setTurret(1, center-1,center-1);
+       // setTurret(2, center+1,center+1);
+        //setTurret(3, center-1,center+1);
+        //setTurret(3, center+1,center-1);
         //setSpawner(center-1, center+3);
         expandRoad();
         expandRoad();
@@ -119,6 +119,7 @@ public class GridManager : MonoBehaviour
     {
         
     }
+    public int getCenter() {return this.center;}
     public void expandField_left()
     {
         if (x_left==0) {return;}
@@ -180,7 +181,10 @@ public class GridManager : MonoBehaviour
     void setSpawner(int x, int y)
     {
         tiles[x,y].GetComponent<Tile>().setType(4);
-        tiles[x,y].GetComponent<SpriteRenderer>().color = Color.green;
+
+        int r = Random.Range(0,4);
+        tiles[x,y].GetComponent<Animator>().SetInteger("Type", 40+r);
+        //tiles[x,y].GetComponent<SpriteRenderer>().color = Color.green;
     }
     public Tile getTile(int x, int y)
     {
@@ -193,15 +197,10 @@ public class GridManager : MonoBehaviour
         for (int i = roadList.Count-1; i>7; i--)
         {
             (int x, int y) = roadList[i];
-            int contProb = Random.Range(1,11);
-            char dir;
-            if (contProb <= 2) {
-                dir = getOppositeDirection(getTile(x,y).GetComponent<Tile>().getDirection());
-                }
-            else {dir = getRandomDirection();}
+
+            char dir = getRandomDirection();
             
-            
-            int prob = Random.Range(0,101);
+            int prob = Random.Range(0,100);
             float branchProb = weightedProbability(baseBranchProbability, baseBranchDecay, new_roads);
             (int x_new, int y_new) = shiftCoords(x,y,dir);
             if (checkFreeField(x_new,y_new) && prob <= branchProb)
@@ -277,26 +276,31 @@ public class GridManager : MonoBehaviour
     public void setTurret(short type, int x, int y)
     {
          tiles[x,y].GetComponent<Tile>().setType(5);
+         tiles[x,y].GetComponent<Animator>().SetInteger("Type", 51);
          Vector3 pos = tiles[x,y].GetComponent<Tile>().transform.position;
          pos.z = -9;
         if (type==1)
         {
             GameObject turret = Instantiate(EB_prefab, pos, Quaternion.identity);
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
+            turret.GetComponent<projectileAim>().setTile(tiles[x,y]);
             tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
         if (type==2)
         {
             GameObject turret = Instantiate(PL_prefab, pos, Quaternion.identity);
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
+            turret.GetComponent<projectileAim>().setTile(tiles[x,y]);
             tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
         if (type==3)
         {
             GameObject turret = Instantiate(ET_prefab, pos, Quaternion.identity);
             turret.GetComponent<projectileAim>().setResourceManager(resourceManager);
+            turret.GetComponent<projectileAim>().setTile(tiles[x,y]);
             tiles[x,y].GetComponent<Tile>().setTurret(turret);
         }
+        
     }
     public void setFloor(int x, int y)
     {
@@ -326,6 +330,7 @@ public class GridManager : MonoBehaviour
         {
             this.uiManager.GetComponent<UIManager>().CloseAllPanels();
         }
+
 
     }
     public void deHighlightField()

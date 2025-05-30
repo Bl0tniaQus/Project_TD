@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public GameObject grid;
+    public UIManager uiManager;
     GameObject resourceManager;
     GameObject turret;
     private short type; //0 - empty, 1 - core, 2 - grass, 3 - road, 4 - spawner, 5 - turrets
@@ -15,7 +16,10 @@ public class Tile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+      if (uiManager == null)
+    {
+        uiManager = FindObjectOfType<UIManager>();
+    }
     }
     void Awake()
     {
@@ -28,9 +32,7 @@ public class Tile : MonoBehaviour
     }
     void OnMouseDown()
     {
-        bool towerBuild = this.grid.GetComponent<GridManager>().uiManager.GetComponent<UIManager>().towerBuildPanel.activeSelf;
-        bool towerUpgrade = this.grid.GetComponent<GridManager>().uiManager.GetComponent<UIManager>().towerUpgradePanel.activeSelf;
-        if (!towerBuild && !towerUpgrade)
+        if (!uiManager.towerBuildPanel.activeSelf && !uiManager.towerUpgradePanel.activeSelf)
         {
             grid.GetComponent<GridManager>().highlightField(this.gameObject);
         }
@@ -56,8 +58,7 @@ public class Tile : MonoBehaviour
             }
         else if (type==1) {
             
-            //this.GetComponent<SpriteRenderer>().color = new Color(255,0,0);
-            
+            this.GetComponent<Animator>().SetInteger("Type", 10);
             }
         else if (type==2) {
             
@@ -136,4 +137,5 @@ public class Tile : MonoBehaviour
     {this.resourceManager = manager;}
     public void setTurret(GameObject t)
     {this.turret = t;}
+    public GameObject getTurret() {return this.turret;}
 }
