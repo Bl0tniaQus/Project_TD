@@ -6,8 +6,7 @@ public class ResourceManagerScript : MonoBehaviour
 {
 
     private long score = 0;
-
-    private long money = 50;
+    private long money = 150;
     private int hp = 100;
     public double scoreFactor;
     private long scoreGoal = 10;
@@ -28,18 +27,14 @@ public class ResourceManagerScript : MonoBehaviour
                 scoreGoalBase = scoreGoalBase * scoreFactor;
                 scoreGoal = scoreGoal + (long)(scoreGoalBase);
                 level++;
-                    int r = Random.Range(1,5);
+                this.mapGrid.GetComponent<GridManager>().expandRoad();
+                int r = Random.Range(1,5);
+                if (level>0 && level%2==0) {
                     if (r==1) {this.mapGrid.GetComponent<GridManager>().expandField_down();}
                     if (r==2) {this.mapGrid.GetComponent<GridManager>().expandField_up();}
                     if (r==3) {this.mapGrid.GetComponent<GridManager>().expandField_left();}
                     if (r==4) {this.mapGrid.GetComponent<GridManager>().expandField_right();}
-                
-                
-                
-                this.mapGrid.GetComponent<GridManager>().expandRoad();
-                
-                
-                
+                }
         }
     }
     public long getScore() {return this.score;}
