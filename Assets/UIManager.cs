@@ -81,6 +81,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowUpgradePanel(GameObject obj)
     {
+        string turretName = obj.GetComponent<Tile>().getTurret().name;
         CloseAllPanels();
         towerUpgradePanel.SetActive(true);
         this.tile = obj;
@@ -89,6 +90,17 @@ public class UIManager : MonoBehaviour
         if (level == 1) {this.cost = 500;}
         if (level == 2) {this.cost = 5000;}
         if (level == 3) {this.cost = -1000;}
+      
+        towerName.text = turretName.Remove(turretName.Length - 7);
+        towerLevel.text = "Lvl: " + level.ToString();
+        if (level==3){
+            towerUpgradeCost.text = "Tower fully upgraded";
+        }
+        else{
+            towerUpgradeCost.text = "Upgrade cost: " + (this.cost).ToString();
+        }
+        
+
     }
 
     public void CloseAllPanels()
