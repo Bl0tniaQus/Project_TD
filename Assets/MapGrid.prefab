@@ -45,13 +45,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 12256686692278179, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-  en: {fileID: 3656454898757715196, guid: 900fe56fb64334bce85c1fec84f3a262, type: 3}
   camera: {fileID: 0}
   mapGrid: {fileID: 1617950863817998962}
   EB_prefab: {fileID: 0}
   PL_prefab: {fileID: 0}
   ET_prefab: {fileID: 0}
   resourceManager: {fileID: 0}
+  uiManager: {fileID: 0}
+  smallEnemy1: {fileID: 8933821374128837756, guid: 4e16609d1bda9507980069cf723594ff, type: 3}
+  smallEnemy2: {fileID: 0}
+  mediumEnemy1: {fileID: 0}
+  mediumEnemy2: {fileID: 0}
+  largeEnemy1: {fileID: 0}
+  largeEnemy2: {fileID: 0}
   maxDim: 15
   baseBranchProbability: 0
   baseBranchDecay: 0
