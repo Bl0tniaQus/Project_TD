@@ -175,7 +175,7 @@ MonoBehaviour:
   initial_speed: 0.4
   damage: 1
   health: 1
-  cooldown: 0
+  cooldown: 5
 --- !u!95 &6489939767758326263
 Animator:
   serializedVersion: 5
