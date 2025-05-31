@@ -100,6 +100,7 @@ public class Tile : MonoBehaviour
     public void setGrid(GameObject g) {this.grid = g;}
     private void spawn()
     {
+        setProbabilities();
         int maxDim = grid.GetComponent<GridManager>().maxDim;
         int x_spawn=0, y_spawn=0;
         while(true)
@@ -119,15 +120,61 @@ public class Tile : MonoBehaviour
                 Tile t = this.grid.GetComponent<GridManager>().getTile(x_spawn, y_spawn);
                 int type = t.GetComponent<Tile>().getType();
                 if (type!=3) {continue;}
-                else
-                {
+                bool spawned = false;
+                GameObject en = this.grid.GetComponent<GridManager>().smallEnemy1;
+                int r;
+                while (!spawned)
+                    {
+                            r = Random.Range(0,101);
+                            if (r<=this.probabilities[5])
+                            {
+                                spawned = true;
+                                en = this.grid.GetComponent<GridManager>().largeEnemy2;
+                                break;
+                            }
+                            r = Random.Range(0,101);
+                            if (r<=this.probabilities[4])
+                            {
+                                spawned = true;
+                                en = this.grid.GetComponent<GridManager>().largeEnemy1;
+                                break;
+                            }
+                            r = Random.Range(0,101);
+                            if (r<=this.probabilities[3])
+                            {
+                                spawned = true;
+                                en = this.grid.GetComponent<GridManager>().mediumEnemy2;
+                                break;
+                            }
+                            r = Random.Range(0,101);
+                            if (r<=this.probabilities[2])
+                            {
+                                spawned = true;
+                                en = this.grid.GetComponent<GridManager>().mediumEnemy1;
+                                break;
+                            }
+                            r = Random.Range(0,101);
+                            if (r<=this.probabilities[1])
+                            {
+                                spawned = true;
+                                en = this.grid.GetComponent<GridManager>().smallEnemy2;
+                                break;
+                            }
+                            r = Random.Range(0,101);
+                            if (r<=this.probabilities[0])
+                            {
+                                spawned = true;
+                                en = this.grid.GetComponent<GridManager>().smallEnemy1;
+                                break;
+                            } 
+                    }
                     Vector3 pos = t.GetComponent<Tile>().transform.position;
                     pos.z = -5;
-                    GameObject enemy = Instantiate(this.grid.GetComponent<GridManager>().smallEnemy1, pos, Quaternion.identity);
+                    GameObject enemy = Instantiate(en, pos, Quaternion.identity);
                     enemy.GetComponent<EnemyMovement>().setResourceManager(resourceManager);
-                    this.cooldown = 5f;
+                    this.cooldown = en.GetComponent<EnemyMovement>().cooldown / (1 + (resourceManager.GetComponent<ResourceManagerScript>().getLevel()-1)/10);
                     break;
-                }
+                
             }
 
 

@@ -24,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
     {
         t = transform;
         step = Random.Range(100,240);
+        health = (int)(health * (1 + resourceManager.GetComponent<ResourceManagerScript>().getLevel()/10));
         max_health = health;
         max_speed = initial_speed;
     }
@@ -31,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        max_speed = initial_speed * (1 + (resourceManager.GetComponent<ResourceManagerScript>().getLevel()/100)*2);
+        max_speed = initial_speed * (1 + (resourceManager.GetComponent<ResourceManagerScript>().getLevel()/100)*3);
         if ((this.direction != 'r')&&(speed_r > 0))
         {
             speed_r = speed_r - max_speed / step;
