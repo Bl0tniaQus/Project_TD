@@ -101,7 +101,7 @@ public class UIManager : MonoBehaviour
 
     private void BuyEnergyBlaster()
     {
-        if (resourceManager.GetComponent<ResourceManagerScript>().getMoney()>=50)
+        if (resourceManager.GetComponent<ResourceManagerScript>().getMoney()>=50&&this.tile.GetComponent<Tile>().getType()==2)
         {
             (int x, int y) = this.tile.GetComponent<Tile>().getCoords();
             this.mapGrid.GetComponent<GridManager>().setTurret(1, x,y);
@@ -113,7 +113,7 @@ public class UIManager : MonoBehaviour
 
     private void BuyPrecisionLaser()
     {
-         if (resourceManager.GetComponent<ResourceManagerScript>().getMoney()>=50)
+         if (resourceManager.GetComponent<ResourceManagerScript>().getMoney()>=50&&this.tile.GetComponent<Tile>().getType()==2)
         {
             (int x, int y) = this.tile.GetComponent<Tile>().getCoords();
             this.mapGrid.GetComponent<GridManager>().setTurret(2, x,y);
@@ -125,7 +125,7 @@ public class UIManager : MonoBehaviour
 
      private void BuyEMPTower()
     {
-         if (resourceManager.GetComponent<ResourceManagerScript>().getMoney()>=50)
+         if (resourceManager.GetComponent<ResourceManagerScript>().getMoney()>=50&&this.tile.GetComponent<Tile>().getType()==2)
         {
             (int x, int y) = this.tile.GetComponent<Tile>().getCoords();
             this.mapGrid.GetComponent<GridManager>().setTurret(3, x,y);
