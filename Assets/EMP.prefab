@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9120881623841948749}
   - component: {fileID: 2199762618082948461}
   - component: {fileID: -7502920325811309908}
+  - component: {fileID: -4132582517366229460}
   m_Layer: 0
   m_Name: EMP
   m_TagString: Projectile
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.45448732, g: 0.97275156, b: 1, a: 1}
+  m_Sprite: {fileID: -1689925098, guid: 1c68f4ade5fb24d84a89f5c5419cdbe5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -161,7 +162,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67cde86cc577075328612529dbaa7e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  ttl: 1
-  damage: 1
-  piercing: -100
+--- !u!95 &-4132582517366229460
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361158694007585317}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 050d45240460adb93b978bdf5c4e05b8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

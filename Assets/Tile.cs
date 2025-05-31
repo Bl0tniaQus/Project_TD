@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
     public UIManager uiManager;
     GameObject resourceManager;
     GameObject turret;
-    private short type; //0 - empty, 1 - core, 2 - grass, 3 - road, 4 - spawner, 5 - turrets
+    private short type; //0 - empty, 1 - core, 2 - floor, 3 - road, 4 - spawner, 5 - turrets
     private char direction;
     private int x, y;
     private float cooldown = 0f;

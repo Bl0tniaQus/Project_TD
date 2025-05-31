@@ -126,7 +126,7 @@ public class projectileAim : MonoBehaviour
             this.damage+=3;
             this.speed+=0.05f;
             //this.ttl+=1.5f;
-            this.GetComponent<CircleCollider2D>().radius += 2;
+            this.GetComponent<CircleCollider2D>().radius += 1;
         }
         if (name=="Precision Laser(Clone)")
         {
@@ -135,13 +135,13 @@ public class projectileAim : MonoBehaviour
             this.speed+=0.2f;
             //this.ttl+=1;
             this.piercing+=1;
-            this.GetComponent<CircleCollider2D>().radius += 3;
+            this.GetComponent<CircleCollider2D>().radius += 2;
         }
         if (name=="EMPTower(Clone)")
         {
             this.damage+=1;
             this.speed+=0.83f;
-            this.GetComponent<CircleCollider2D>().radius += 0.5f;
+            this.GetComponent<CircleCollider2D>().radius += 0.45f;
         }
         
 
