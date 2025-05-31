@@ -5,7 +5,6 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     public Tile prefab;
-    public GameObject en;
     public GameObject camera;
     public GameObject mapGrid;
     public GameObject EB_prefab;
@@ -13,6 +12,12 @@ public class GridManager : MonoBehaviour
     public GameObject ET_prefab;
     public GameObject resourceManager;
     public GameObject uiManager;
+    public GameObject smallEnemy1;
+    public GameObject smallEnemy2;
+    public GameObject mediumEnemy1;
+    public GameObject mediumEnemy2;
+    public GameObject largeEnemy1;
+    public GameObject largeEnemy2;
     public int maxDim;
     public int baseBranchProbability;
     public float baseBranchDecay;

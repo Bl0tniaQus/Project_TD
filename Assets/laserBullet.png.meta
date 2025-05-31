@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6619d4521466a05a2af43a7884b76f2d
+guid: f9005440d70b6b53fb52000a51c674ff
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 160
+  spritePixelsToUnits: 80
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,97 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: zebatka_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7a5feb6e1d3f8fc39a9172cd4f9f189b
-      internalID: -1556367749
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: zebatka_1
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ea03388a4183e135f8d8417b04c8ce10
-      internalID: 1445474193
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: zebatka_2
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 39acb50b41a97221aa118410f4313a46
-      internalID: 1724298502
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: zebatka_3
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1242ca0c6e8b14248e0f9563905ad91
-      internalID: -1382804055
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: zebatka_4
+      name: laserBullet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 160
-        height: 160
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 023101100859089fa9b42f46f51d76fa
-      internalID: 1270790061
+      spriteID: c3bab9dcc6469031dad09b5123304068
+      internalID: 721295195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zebatka_5
+      name: laserBullet_1
       rect:
         serializedVersion: 2
-        x: 160
+        x: 80
         y: 0
-        width: 160
-        height: 160
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +132,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08e5f6e2852eeb3deadc6e524ed0a94b
-      internalID: 695605178
+      spriteID: 58a96d69736a4aecbaa09a31f768215b
+      internalID: -318324818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: laserBullet_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae022379529bc4c75981be729a34be60
+      internalID: 133435167
       vertices: []
       indices: 
       edges: []
@@ -233,12 +170,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      zebatka_0: -1556367749
-      zebatka_1: 1445474193
-      zebatka_2: 1724298502
-      zebatka_3: -1382804055
-      zebatka_4: 1270790061
-      zebatka_5: 695605178
+      laserBullet_0: 721295195
+      laserBullet_1: -318324818
+      laserBullet_2: 133435167
+      laserBullet_3: 653181783
+      laserBullet_4: 2039555687
+      laserBullet_5: -1244235429
+      laserBullet_6: -580449000
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

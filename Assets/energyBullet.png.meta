@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6619d4521466a05a2af43a7884b76f2d
+guid: db9f190346094b763ace4e9e6ce52d30
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 160
+  spritePixelsToUnits: 80
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: zebatka_0
+      name: energyBullet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 160
-        width: 160
-        height: 160
+        y: 80
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a5feb6e1d3f8fc39a9172cd4f9f189b
-      internalID: -1556367749
+      spriteID: f51a0da640a211e25a34e421a8b22a4a
+      internalID: 1188072572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zebatka_1
+      name: energyBullet_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81cb79b446ef17ce4abd24c8d5f49093
+      internalID: 1035731253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBullet_2
       rect:
         serializedVersion: 2
         x: 160
-        y: 160
-        width: 160
-        height: 160
+        y: 80
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +153,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea03388a4183e135f8d8417b04c8ce10
-      internalID: 1445474193
+      spriteID: 813488fc356096ca18378663631a8654
+      internalID: -65843296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zebatka_2
+      name: energyBullet_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 80
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00ab578c3c66acc20a8ef495e239e295
+      internalID: -1137846859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBullet_4
       rect:
         serializedVersion: 2
         x: 320
-        y: 160
-        width: 160
-        height: 160
+        y: 80
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +195,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39acb50b41a97221aa118410f4313a46
-      internalID: 1724298502
+      spriteID: 1b78eec31920d6344bce5456154bfd84
+      internalID: -1372581895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zebatka_3
+      name: energyBullet_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 80
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f1644007e2961b2dbff8716fb2b0b4d
+      internalID: 2032854893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBullet_6
       rect:
         serializedVersion: 2
         x: 480
-        y: 160
-        width: 160
-        height: 160
+        y: 80
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +237,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1242ca0c6e8b14248e0f9563905ad91
-      internalID: -1382804055
+      spriteID: 1317846f8dbf54cf4aab38cc0b63325f
+      internalID: -2022283983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zebatka_4
+      name: energyBullet_7
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 160
-        height: 160
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +258,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 023101100859089fa9b42f46f51d76fa
-      internalID: 1270790061
+      spriteID: cd017504538bf1398a06e924df844eea
+      internalID: -1764797196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zebatka_5
+      name: energyBullet_8
       rect:
         serializedVersion: 2
-        x: 160
+        x: 80
         y: 0
-        width: 160
-        height: 160
+        width: 80
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +279,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08e5f6e2852eeb3deadc6e524ed0a94b
-      internalID: 695605178
+      spriteID: d0c7dc651f8bd7836b40759810618750
+      internalID: 372622583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBullet_9
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bf28683b72a70de99f724cde82bf491
+      internalID: 857586523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energyBullet_10
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7833320628157e0b0ba429f7e8c5d2b1
+      internalID: -1243276865
       vertices: []
       indices: 
       edges: []
@@ -233,12 +338,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      zebatka_0: -1556367749
-      zebatka_1: 1445474193
-      zebatka_2: 1724298502
-      zebatka_3: -1382804055
-      zebatka_4: 1270790061
-      zebatka_5: 695605178
+      energyBullet_0: 1188072572
+      energyBullet_1: 1035731253
+      energyBullet_10: -1243276865
+      energyBullet_11: -1145803012
+      energyBullet_12: -2074157810
+      energyBullet_13: -2016915246
+      energyBullet_2: -65843296
+      energyBullet_3: -1137846859
+      energyBullet_4: -1372581895
+      energyBullet_5: 2032854893
+      energyBullet_6: -2022283983
+      energyBullet_7: -1764797196
+      energyBullet_8: 372622583
+      energyBullet_9: 857586523
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

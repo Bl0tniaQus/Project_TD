@@ -105,6 +105,7 @@ public class UIManager : MonoBehaviour
         {
             (int x, int y) = this.tile.GetComponent<Tile>().getCoords();
             this.mapGrid.GetComponent<GridManager>().setTurret(1, x,y);
+            resourceManager.GetComponent<ResourceManagerScript>().spendMoney(50);
             CloseAllPanels();
         }
         
