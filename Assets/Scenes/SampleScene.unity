@@ -516,8 +516,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1761284949}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &153384330
@@ -533,7 +532,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 12256686692278179, guid: f36700f04518d13519ec9e9b88cdfb39, type: 3}
-  en: {fileID: 3656454898757715196, guid: 900fe56fb64334bce85c1fec84f3a262, type: 3}
   camera: {fileID: 519420028}
   mapGrid: {fileID: 153384327}
   EB_prefab: {fileID: 7112851555001857648, guid: 123c25c96253834b39026de685f9b47b, type: 3}
@@ -541,6 +539,12 @@ MonoBehaviour:
   ET_prefab: {fileID: 6851144939200794441, guid: 9ad8c83b5760ae05e9cf1c9efeb7c7b1, type: 3}
   resourceManager: {fileID: 1094390726}
   uiManager: {fileID: 1782751293}
+  smallEnemy1: {fileID: 8933821374128837756, guid: 4e16609d1bda9507980069cf723594ff, type: 3}
+  smallEnemy2: {fileID: 5015186538115506477, guid: 0771a517818dbb93b9a86eb88d6e7126, type: 3}
+  mediumEnemy1: {fileID: 4795695745700888944, guid: 4f6d681d1f9442c61b2193580f0c7730, type: 3}
+  mediumEnemy2: {fileID: 5015186538115506477, guid: 0771a517818dbb93b9a86eb88d6e7126, type: 3}
+  largeEnemy1: {fileID: 1003153292341071569, guid: 8fd40387745b2a197ae0df91a2ef04c6, type: 3}
+  largeEnemy2: {fileID: 5015186538115506477, guid: 0771a517818dbb93b9a86eb88d6e7126, type: 3}
   maxDim: 35
   baseBranchProbability: 70
   baseBranchDecay: 1.4
@@ -4602,7 +4606,7 @@ RectTransform:
   - {fileID: 994287598}
   - {fileID: 993675794}
   - {fileID: 1183651655}
-  m_Father: {fileID: 153384329}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4977,3 +4981,4 @@ SceneRoots:
   - {fileID: 1782751295}
   - {fileID: 1553920898}
   - {fileID: 1094390728}
+  - {fileID: 1761284949}

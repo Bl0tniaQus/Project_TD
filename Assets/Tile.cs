@@ -6,6 +6,7 @@ public class Tile : MonoBehaviour
 {
     public GameObject grid;
     public UIManager uiManager;
+    
     GameObject resourceManager;
     GameObject turret;
     private short type; //0 - empty, 1 - core, 2 - floor, 3 - road, 4 - spawner, 5 - turrets
@@ -13,6 +14,7 @@ public class Tile : MonoBehaviour
     private int x, y;
     private float cooldown = 0f;
     int animation;
+    float[] probabilities = {0f, 0f, 0f, 0f ,0f, 0f};
     // Start is called before the first frame update
     void Start()
     {
@@ -98,6 +100,7 @@ public class Tile : MonoBehaviour
     public void setGrid(GameObject g) {this.grid = g;}
     private void spawn()
     {
+        setProbabilities();
         int maxDim = grid.GetComponent<GridManager>().maxDim;
         int x_spawn=0, y_spawn=0;
         while(true)
@@ -117,15 +120,61 @@ public class Tile : MonoBehaviour
                 Tile t = this.grid.GetComponent<GridManager>().getTile(x_spawn, y_spawn);
                 int type = t.GetComponent<Tile>().getType();
                 if (type!=3) {continue;}
-                else
-                {
+                bool spawned = false;
+                GameObject en = this.grid.GetComponent<GridManager>().smallEnemy1;
+                int r;
+                while (!spawned)
+                    {
+                            r = Random.Range(0,101);
+                            if (r<=this.probabilities[5])
+                            {
+                                spawned = true;
+                                en = this.grid.GetComponent<GridManager>().largeEnemy2;
+                                break;
+                            }
+                            r = Random.Range(0,101);
+                            if (r<=this.probabilities[4])
+                            {
+                                spawned = true;
+                                en = this.grid.GetComponent<GridManager>().largeEnemy1;
+                                break;
+                            }
+                            r = Random.Range(0,101);
+                            if (r<=this.probabilities[3])
+                            {
+                                spawned = true;
+                                en = this.grid.GetComponent<GridManager>().mediumEnemy2;
+                                break;
+                            }
+                            r = Random.Range(0,101);
+                            if (r<=this.probabilities[2])
+                            {
+                                spawned = true;
+                                en = this.grid.GetComponent<GridManager>().mediumEnemy1;
+                                break;
+                            }
+                            r = Random.Range(0,101);
+                            if (r<=this.probabilities[1])
+                            {
+                                spawned = true;
+                                en = this.grid.GetComponent<GridManager>().smallEnemy2;
+                                break;
+                            }
+                            r = Random.Range(0,101);
+                            if (r<=this.probabilities[0])
+                            {
+                                spawned = true;
+                                en = this.grid.GetComponent<GridManager>().smallEnemy1;
+                                break;
+                            } 
+                    }
                     Vector3 pos = t.GetComponent<Tile>().transform.position;
                     pos.z = -5;
-                    GameObject enemy = Instantiate(this.grid.GetComponent<GridManager>().en, pos, Quaternion.identity);
+                    GameObject enemy = Instantiate(en, pos, Quaternion.identity);
                     enemy.GetComponent<EnemyMovement>().setResourceManager(resourceManager);
-                    this.cooldown = 5f;
+                    this.cooldown = en.GetComponent<EnemyMovement>().cooldown / (1 + (resourceManager.GetComponent<ResourceManagerScript>().getLevel()-1)/10);
                     break;
-                }
+                
             }
 
 
@@ -138,4 +187,39 @@ public class Tile : MonoBehaviour
     public void setTurret(GameObject t)
     {this.turret = t;}
     public GameObject getTurret() {return this.turret;}
+    void setProbabilities()
+    {
+        int level = this.resourceManager.GetComponent<ResourceManagerScript>().getLevel();
+        if (level<=3)
+        {
+            this.probabilities = new float[] {100f, 0f, 0f, 0f, 0f, 0f};
+        }
+        if (level>3 && level<=5)
+        {
+            this.probabilities = new float[] {80f, 20f, 0f, 0f, 0f, 0f};
+        }
+        if (level>5 && level<=8)
+        {
+            this.probabilities = new float[] {60f, 30f, 10f, 10f, 0f, 0f};
+        }
+        if (level>8 && level<=13)
+        {
+            this.probabilities = new float[] {40f, 30f, 20f, 20f, 1f, 1f};
+        }
+        if (level>13 && level<=20)
+        {
+            this.probabilities = new float[] {40f, 30f, 20f, 20f, 5f, 5f};
+        }
+        if (level>20 && level<=27)
+        {
+            this.probabilities = new float[] {20f, 20f, 40f, 40f, 15f, 15f};
+        }
+        if (level>=28)
+        {
+            this.probabilities = new float[] {5f, 5f, 40f, 40f, 30f, 30f};
+        }
+
+
+
+    }
 }

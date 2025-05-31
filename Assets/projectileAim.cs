@@ -30,11 +30,13 @@ public class projectileAim : MonoBehaviour
     void Update()
     {
         
-        
-        
-    }
-    void FixedUpdate()
-    {
+        if (closestEnemy!=null&&this.name!="EMPTower(Clone)")
+        {
+            Vector2 direction = closestEnemy.transform.position - this.transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+
         if (this.cooldown>0f) {this.cooldown-=Time.deltaTime;}
         if (this.cooldown<=0f)
         {
@@ -50,12 +52,20 @@ public class projectileAim : MonoBehaviour
                 bullet.GetComponent<projectileTravel>().setTtl(ttl);
                 bullet.GetComponent<projectileTravel>().setPiercing(piercing);
                 bullet.GetComponent<projectileTravel>().setTarget((closestEnemy.transform.position - this.transform.position).normalized);
+                Vector2 direction = closestEnemy.transform.position - bullet.transform.position;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 closestEnemy=null;
                 closestDist=-1.0f;
                 this.cooldown = initialCooldown;
             }
             
         }
+        
+    }
+    void FixedUpdate()
+    {
+        
     }
     private float dist(GameObject enemy)
     {
