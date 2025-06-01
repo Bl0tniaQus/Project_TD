@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     private float max_speed;
     public int damage;
     public int health;
+    public float cooldown;
     int max_health;
     GameObject resourceManager;
     float speed_r = 0.0f;
@@ -22,7 +23,8 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         t = transform;
-        step = Random.Range(60,180);
+        step = Random.Range(100,240);
+        health = (int)(health * (1 + resourceManager.GetComponent<ResourceManagerScript>().getLevel()/20));
         max_health = health;
         max_speed = initial_speed;
     }
@@ -30,13 +32,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
-        
-
-    }
-    void FixedUpdate()
-    {
-        max_speed = initial_speed * (1 + (resourceManager.GetComponent<ResourceManagerScript>().getLevel()/100)*2);
+        max_speed = initial_speed * (1 + (resourceManager.GetComponent<ResourceManagerScript>().getLevel()/100)*3);
         if ((this.direction != 'r')&&(speed_r > 0))
         {
             speed_r = speed_r - max_speed / step;
@@ -58,10 +54,16 @@ public class EnemyMovement : MonoBehaviour
             if (speed_d<0) {speed_d = 0.0f;}
         }
 
-        t.position += Vector3.right * speed_r;
-        t.position += Vector3.left * speed_l;
-        t.position += Vector3.down * speed_d;
-        t.position += Vector3.up * speed_u;
+        t.position += Vector3.right * speed_r * Time.deltaTime;
+        t.position += Vector3.left * speed_l * Time.deltaTime;
+        t.position += Vector3.down * speed_d * Time.deltaTime;
+        t.position += Vector3.up * speed_u * Time.deltaTime;
+        
+
+    }
+    void FixedUpdate()
+    {
+        
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
