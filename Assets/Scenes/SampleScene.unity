@@ -415,7 +415,7 @@ MonoBehaviour:
   largeEnemy2: {fileID: 495848262947013831, guid: 5a5460716bb92c83280edd09fb9adf0c, type: 3}
   maxDim: 51
   baseBranchProbability: 70
-  baseBranchDecay: 1.6
+  baseBranchDecay: 4
   baseSpawnerSpawnProbability: 5
   baseSpawnerSpawnDecay: 1.2
 --- !u!114 &153384331
