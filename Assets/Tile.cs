@@ -13,8 +13,7 @@ public class Tile : MonoBehaviour
     private char direction;
     private int x, y;
     private float cooldown = 0f;
-    int animation;
-    float[] probabilities = {0f, 0f, 0f, 0f ,0f, 0f};
+    int[] probabilities = {0, 0, 0, 0 ,0, 0};
     // Start is called before the first frame update
     void Start()
     {
@@ -53,40 +52,6 @@ public class Tile : MonoBehaviour
     public void setType(short type)
     {
         this.type = type;
-        if (type==0) {
-            
-            //this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
-            
-            }
-        else if (type==1) {
-            
-            this.GetComponent<Animator>().SetInteger("Type", 10);
-            }
-        else if (type==2) {
-            
-            //this.GetComponent<SpriteRenderer>().color = new Color(0,255,0);
-            
-            }
-        else if (type==3) {
-            this.animation = 30;    
-            }
-        else if (type==4) {
-            
-            //this.GetComponent<SpriteRenderer>().color = new Color(180,140,128);
-            
-            }
-        else if (type==5) {
-            
-            
-           // this.GetComponent<SpriteRenderer>().color = new Color(0,0,128);
-            
-            
-            }
-
-
-        
-
-
     }
     public void setDirection(char direction)
     {
@@ -100,7 +65,8 @@ public class Tile : MonoBehaviour
     public void setGrid(GameObject g) {this.grid = g;}
     private void spawn()
     {
-        setProbabilities();
+        setProbabilities(); 
+        
         int maxDim = grid.GetComponent<GridManager>().maxDim;
         int x_spawn=0, y_spawn=0;
         while(true)
@@ -126,42 +92,42 @@ public class Tile : MonoBehaviour
                 while (!spawned)
                     {
                             r = Random.Range(0,101);
-                            if (r<=this.probabilities[5])
+                            if (r<this.probabilities[5])
                             {
                                 spawned = true;
                                 en = this.grid.GetComponent<GridManager>().largeEnemy2;
                                 break;
                             }
                             r = Random.Range(0,101);
-                            if (r<=this.probabilities[4])
+                            if (r<this.probabilities[4])
                             {
                                 spawned = true;
                                 en = this.grid.GetComponent<GridManager>().largeEnemy1;
                                 break;
                             }
                             r = Random.Range(0,101);
-                            if (r<=this.probabilities[3])
+                            if (r<this.probabilities[3])
                             {
                                 spawned = true;
                                 en = this.grid.GetComponent<GridManager>().mediumEnemy2;
                                 break;
                             }
                             r = Random.Range(0,101);
-                            if (r<=this.probabilities[2])
+                            if (r<this.probabilities[2])
                             {
                                 spawned = true;
                                 en = this.grid.GetComponent<GridManager>().mediumEnemy1;
                                 break;
                             }
                             r = Random.Range(0,101);
-                            if (r<=this.probabilities[1])
+                            if (r<this.probabilities[1])
                             {
                                 spawned = true;
                                 en = this.grid.GetComponent<GridManager>().smallEnemy2;
                                 break;
                             }
                             r = Random.Range(0,101);
-                            if (r<=this.probabilities[0])
+                            if (r<this.probabilities[0])
                             {
                                 spawned = true;
                                 en = this.grid.GetComponent<GridManager>().smallEnemy1;
@@ -172,7 +138,7 @@ public class Tile : MonoBehaviour
                     pos.z = -5;
                     GameObject enemy = Instantiate(en, pos, Quaternion.identity);
                     enemy.GetComponent<EnemyMovement>().setResourceManager(resourceManager);
-                    this.cooldown = en.GetComponent<EnemyMovement>().cooldown / (1 + (resourceManager.GetComponent<ResourceManagerScript>().getLevel()-1)/10);
+                    this.cooldown = en.GetComponent<EnemyMovement>().cooldown / (1 + (resourceManager.GetComponent<ResourceManagerScript>().getLevel()-1)/20);
                     break;
                 
             }
@@ -192,33 +158,33 @@ public class Tile : MonoBehaviour
         int level = this.resourceManager.GetComponent<ResourceManagerScript>().getLevel();
         if (level<=3)
         {
-            this.probabilities = new float[] {100f, 0f, 0f, 0f, 0f, 0f};
+            this.probabilities = new int[] {100, 0, 0, 0, 0, 0};
+            
         }
         if (level>3 && level<=5)
         {
-            this.probabilities = new float[] {80f, 20f, 0f, 0f, 0f, 0f};
+            this.probabilities = new int[] {80, 20, 0, 0, 0, 0};
         }
         if (level>5 && level<=8)
         {
-            this.probabilities = new float[] {60f, 30f, 10f, 10f, 0f, 0f};
+            this.probabilities = new int[] {60, 30, 10, 10, 0, 0};
         }
         if (level>8 && level<=13)
         {
-            this.probabilities = new float[] {40f, 30f, 20f, 20f, 1f, 1f};
+            this.probabilities = new int[] {40, 30, 20, 20, 1, 1};
         }
         if (level>13 && level<=20)
         {
-            this.probabilities = new float[] {40f, 30f, 20f, 20f, 5f, 5f};
+            this.probabilities = new int[] {40, 30, 20, 20, 5, 5};
         }
         if (level>20 && level<=27)
         {
-            this.probabilities = new float[] {20f, 20f, 40f, 40f, 15f, 15f};
+            this.probabilities = new int[] {20, 20, 40, 40, 15, 15};
         }
         if (level>=28)
         {
-            this.probabilities = new float[] {5f, 5f, 40f, 40f, 30f, 30f};
+            this.probabilities = new int[] {5, 5, 40, 40, 30, 30};
         }
-
 
 
     }

@@ -544,13 +544,13 @@ MonoBehaviour:
   smallEnemy1: {fileID: 8933821374128837756, guid: 4e16609d1bda9507980069cf723594ff, type: 3}
   smallEnemy2: {fileID: 5015186538115506477, guid: 0771a517818dbb93b9a86eb88d6e7126, type: 3}
   mediumEnemy1: {fileID: 4795695745700888944, guid: 4f6d681d1f9442c61b2193580f0c7730, type: 3}
-  mediumEnemy2: {fileID: 5015186538115506477, guid: 0771a517818dbb93b9a86eb88d6e7126, type: 3}
+  mediumEnemy2: {fileID: 6910824049347357056, guid: 2d4ef4e96acb5950299eca380182d6c7, type: 3}
   largeEnemy1: {fileID: 1003153292341071569, guid: 8fd40387745b2a197ae0df91a2ef04c6, type: 3}
-  largeEnemy2: {fileID: 5015186538115506477, guid: 0771a517818dbb93b9a86eb88d6e7126, type: 3}
-  maxDim: 35
+  largeEnemy2: {fileID: 495848262947013831, guid: 5a5460716bb92c83280edd09fb9adf0c, type: 3}
+  maxDim: 51
   baseBranchProbability: 70
-  baseBranchDecay: 1.4
-  baseSpawnerSpawnProbability: 25
+  baseBranchDecay: 1.6
+  baseSpawnerSpawnProbability: 5
   baseSpawnerSpawnDecay: 1.2
 --- !u!114 &153384331
 MonoBehaviour:
@@ -3643,7 +3643,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1553920898}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1162377038
 GameObject:
@@ -5526,8 +5526,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1094390728}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1591370173
@@ -6599,3 +6598,4 @@ SceneRoots:
   - {fileID: 1782751295}
   - {fileID: 1553920898}
   - {fileID: 1761284949}
+  - {fileID: 1094390728}

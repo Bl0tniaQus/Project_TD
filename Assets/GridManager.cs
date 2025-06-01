@@ -29,6 +29,7 @@ public class GridManager : MonoBehaviour
     private int neutralLevel = 0;
     private int center;
     private int x_left,x_right,y_bot,y_top;
+    private int spawnerCount;
     private GameObject highlightedField = null;
     // Start is called before the first frame update
     void Start()
@@ -50,13 +51,11 @@ public class GridManager : MonoBehaviour
             tiles[i,j].GetComponent<Tile>().setGrid(mapGrid);
             tiles[i,j].GetComponent<Tile>().setResourceManager(resourceManager);
             tiles[i,j].GetComponent<Animator>().SetInteger("Type", 0);
-            //tiles[i,j].GetComponent<Tile>().setType(1);
-            //tiles[i,j].GetComponent<SpriteRenderer>().material.color = new Color(0, 204, 102);
-            //tiles[i,j].GetComponent<SpriteRenderer>().material.color = new Color(0, 204, 102);
         }
         
         }
         tiles[center, center].GetComponent<Tile>().setType(1);
+        tiles[center,center].GetComponent<Animator>().SetInteger("Type", 10);
         Debug.Log(center);
         Vector3 cam_pos = camera.transform.position;
         Vector3 middle_pos = tiles[center, center].GetComponent<Tile>().transform.position;
@@ -68,6 +67,10 @@ public class GridManager : MonoBehaviour
         expandField_left();
         expandField_left();
         expandField_left();
+        expandField_left();
+        expandField_left();
+        expandField_right();
+        expandField_right();
         expandField_right();
         expandField_right();
         expandField_right();
@@ -76,6 +79,10 @@ public class GridManager : MonoBehaviour
         expandField_down();
         expandField_down();
         expandField_down();
+        expandField_down();
+        expandField_down();
+        expandField_up();
+        expandField_up();
         expandField_up();
         expandField_up();
         expandField_up();
@@ -96,26 +103,23 @@ public class GridManager : MonoBehaviour
         setRoad(center, center-3, 'u');
         setRoad(center, center+3, 'd');
         setRoad(center+3, center, 'l');
-        //setTurret(1, center-1,center-1);
-       // setTurret(2, center+1,center+1);
-        //setTurret(3, center-1,center+1);
-        //setTurret(3, center+1,center-1);
-        //setSpawner(center-1, center+3);
-        expandRoad();
-        expandRoad();
-        expandRoad();
-        expandRoad();
-        expandRoad();
-        expandRoad();
 
-        //tiles[center-2, center+1].GetComponent<Tile>().setType(3); tiles[center-2, center+1].GetComponent<Tile>().setDirection('d');
-        //tiles[center-3, center+1].GetComponent<Tile>().setType(3); tiles[center-3, center+1].GetComponent<Tile>().setDirection('r');
-        //tiles[center-3, center+2].GetComponent<Tile>().setType(3); tiles[center-3, center+2].GetComponent<Tile>().setDirection('d');
+        expandRoad();
+        expandRoad();
+        expandRoad();
+        expandRoad();
+        expandRoad();
+        expandRoad();
+        expandRoad();
+        expandRoad();
+        if (this.spawnerCount==0)
+        {
+            while(spawnerCount==0)
+            {
+                spawnSpawners();
+            }
+        }
 
-
-        //Vector3 pos = tiles[center, center+3].GetComponent<Tile>().transform.position;
-        //pos.z = -5;
-        //GameObject enemy = Instantiate(en, pos, Quaternion.identity);
 
     }
 
@@ -189,6 +193,7 @@ public class GridManager : MonoBehaviour
 
         int r = Random.Range(0,4);
         tiles[x,y].GetComponent<Animator>().SetInteger("Type", 40+r);
+        this.spawnerCount++;
         //tiles[x,y].GetComponent<SpriteRenderer>().color = Color.green;
     }
     public Tile getTile(int x, int y)
@@ -197,7 +202,9 @@ public class GridManager : MonoBehaviour
     }
     public void expandRoad()
     {
-        int new_roads = 0;
+        for (int j =0; j<3; j++)
+        {
+            int new_roads = 0;
 
         for (int i = roadList.Count-1; i>7; i--)
         {
@@ -208,6 +215,13 @@ public class GridManager : MonoBehaviour
             int prob = Random.Range(0,100);
             float branchProb = weightedProbability(baseBranchProbability, baseBranchDecay, new_roads);
             (int x_new, int y_new) = shiftCoords(x,y,dir);
+            float d1 = distFromCenter(x,y);
+            float d = distFromCenter(x_new,y_new);
+            if (d<d1)
+            {
+                
+                continue;
+            }
             if (checkFreeField(x_new,y_new) && prob <= branchProb)
             {
                 setRoad(x_new,y_new, getOppositeDirection(dir));
@@ -215,6 +229,8 @@ public class GridManager : MonoBehaviour
             }
 
         }
+        }
+        
         spawnSpawners();
     }
     public void spawnSpawners()

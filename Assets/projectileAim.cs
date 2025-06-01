@@ -104,55 +104,28 @@ public class projectileAim : MonoBehaviour
             this.level++;
             this.tile.GetComponent<Animator>().SetInteger("Type", 50+level);
             if (name=="Energy Blaster(Clone)")
-            {
-                this.initialCooldown-=0.2f;
-                this.damage+=3;
-                this.speed+=0.05f;
-                //this.ttl+=1.5f;
-                this.GetComponent<CircleCollider2D>().radius += 2;
-            }
-            if (name=="Precision Laser(Clone)")
-            {
-                this.initialCooldown-=0.2f;
-                this.damage+=5;
-                this.speed+=0.2f;
-                //this.ttl+=1;
-                this.piercing+=1;
-                this.GetComponent<CircleCollider2D>().radius += 3;
-            }
-            if (name=="EMPTower(Clone)")
-            {
-                this.damage+=1;
-                this.speed+=2.5f;
-                this.GetComponent<CircleCollider2D>().radius += 1.3f;
-            }
-
-
-
-        }
-        if (name=="Energy Blaster(Clone)")
         {
-            this.initialCooldown-=0.2f;
-            this.damage+=3;
-            this.speed+=0.05f;
-            //this.ttl+=1.5f;
+            this.initialCooldown-=0.25f;
+            this.damage+=3*this.level;
+            this.speed+=0.06f*this.level;
             this.GetComponent<CircleCollider2D>().radius += 1;
         }
         if (name=="Precision Laser(Clone)")
         {
-            this.initialCooldown-=0.3f;
-            this.damage+=5;
-            this.speed+=0.2f;
-            //this.ttl+=1;
+            this.initialCooldown-=0.5f;
+            this.damage+=5*this.level;
+            this.speed+=0.2f*this.level;
             this.piercing+=1;
             this.GetComponent<CircleCollider2D>().radius += 2;
         }
         if (name=="EMPTower(Clone)")
         {
-            this.damage+=1;
+            this.damage+=2*this.level;
             this.speed+=0.83f;
             this.GetComponent<CircleCollider2D>().radius += 0.45f;
         }
+        }
+        
         
 
     }
