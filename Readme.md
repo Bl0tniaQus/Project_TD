@@ -3,15 +3,15 @@ ProjectTD is a 2D endless tower defence game with elements of a real time strate
 ![Alt text](gameplay.png?raw=true "Optional Title")
 
 Controls:
-- Scroll wheel to move the camera (zooming in and out, moving around when dragging with scroll pressed)
-- LBM highlights field on the map
-- RBM cancels opened purchase/upgrade menu
+- Scroll wheel to move the camera (zooming in and out, moving around when dragging with scroll pressed),
+- LBM highlights field on the map,
+- RBM cancels opened purchase/upgrade menu.
 
-ProjectTD was made using the Unity Game Engine, version 2022.3.60f
+ProjectTD was made using the Unity Game Engine, version 2022.3.60f.
 
-Although it's not a AAA game, it was made by the AAA team - Adrian, Arkadiusz and Albert
+Although it's not a AAA game, it was made by the AAA team - Adrian, Arkadiusz and Albert.
 
-It's a student project made for a "Game Programming" class on our last, 10th Computer Engineering semester at Rzeszów University of Technology
+It's a student project made for a "Game Programming" class on our last, 10th Computer Engineering semester at Rzeszów University of Technology.
 
 
 
