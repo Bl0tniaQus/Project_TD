@@ -488,7 +488,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 60, y: 105}
-  m_SizeDelta: {x: 100, y: 50}
+  m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &279860622
 MonoBehaviour:
@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Buy
+  m_text: Buy (50)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 297ab0f4a23b9d7dcb9fa33e2d98a94c, type: 2}
   m_sharedMaterial: {fileID: -6942788171331968983, guid: 297ab0f4a23b9d7dcb9fa33e2d98a94c, type: 2}
@@ -1939,7 +1939,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Buy
+  m_text: Buy (50)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 297ab0f4a23b9d7dcb9fa33e2d98a94c, type: 2}
   m_sharedMaterial: {fileID: -6942788171331968983, guid: 297ab0f4a23b9d7dcb9fa33e2d98a94c, type: 2}
@@ -2537,7 +2537,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Buy
+  m_text: Buy (50)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 297ab0f4a23b9d7dcb9fa33e2d98a94c, type: 2}
   m_sharedMaterial: {fileID: -6942788171331968983, guid: 297ab0f4a23b9d7dcb9fa33e2d98a94c, type: 2}
@@ -5410,7 +5410,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 60, y: -15}
-  m_SizeDelta: {x: 100, y: 50}
+  m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1545940209
 MonoBehaviour:
@@ -5659,7 +5659,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 60, y: -135}
-  m_SizeDelta: {x: 100, y: 50}
+  m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1591370175
 MonoBehaviour:
