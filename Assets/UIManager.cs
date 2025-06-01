@@ -30,6 +30,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scrapText;
     [SerializeField] private TextMeshProUGUI scoreText;
 
+    [SerializeField] private Image towerImage;
+    [SerializeField] private Sprite level1EB;
+    [SerializeField] private Sprite level1PL;
+    [SerializeField] private Sprite level1ET;
+    [SerializeField] private Sprite level2EB;
+    [SerializeField] private Sprite level2PL;
+    [SerializeField] private Sprite level2ET;
+    [SerializeField] private Sprite level3EB;
+    [SerializeField] private Sprite level3PL;
+    [SerializeField] private Sprite level3ET;
     GameObject tile = null;
     private int cost = 0;
 
@@ -99,6 +109,34 @@ public class UIManager : MonoBehaviour
         else{
             towerUpgradeCost.text = "Upgrade cost: " + (this.cost).ToString();
         }
+
+        Sprite selectedSprite = null;
+
+
+
+        if (turretName == "EnergyBlaster(Clone)")
+        {
+            if (level == 1) selectedSprite = level1EB;
+            else if (level == 2) selectedSprite = level2EB;
+            else if (level == 3) selectedSprite = level3EB;
+        }
+        else if (turretName == "PrecisionLaser(Clone)")
+        {
+            if (level == 1) selectedSprite = level1PL;
+            else if (level == 2) selectedSprite = level2PL;
+            else if (level == 3) selectedSprite = level3PL;
+        }
+        else if (turretName == "EMPTower(Clone)")
+        {
+            if (level == 1) selectedSprite = level1ET;
+            else if (level == 2) selectedSprite = level2ET;
+            else if (level == 3) selectedSprite = level3ET;
+        }
+
+        
+            if(selectedSprite != null){
+                towerImage.sprite = selectedSprite;
+            }
         
 
     }

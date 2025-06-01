@@ -14,6 +14,7 @@ public class ResourceManagerScript : MonoBehaviour
     private int level = 0;
     private int coreState = 0;
     public GameObject mapGrid;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +63,14 @@ public class ResourceManagerScript : MonoBehaviour
     public long getScore() {return this.score;}
     public long getMoney() {return this.money;}
     public int getHP() {return this.hp;}
-    public void takeDamage(int damage) {this.hp-=damage; if (this.hp<0) {this.hp=0;}}
+    public void takeDamage(int damage) {
+        this.hp-=damage; 
+        if (this.hp <= 0)
+         {
+                this.hp=0;
+                mapGrid.GetComponent<GameOverManager>().TriggerGameOver(this.score);
+         }
+        }
     public void increaseScore(int s) {  this.money+=s; this.score+=s;}
     public int getLevel() {return this.level;}
     public void spendMoney(int m) {this.money -= m;}
