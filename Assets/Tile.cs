@@ -173,7 +173,6 @@ public class Tile : MonoBehaviour
                     GameObject enemy = Instantiate(en, pos, Quaternion.identity);
                     enemy.GetComponent<EnemyMovement>().setResourceManager(resourceManager);
                     this.cooldown = en.GetComponent<EnemyMovement>().cooldown / (1 + (resourceManager.GetComponent<ResourceManagerScript>().getLevel()-1)/10);
-                    //this.cooldown = en.GetComponent<EnemyMovement>().cooldown;
                     break;
                 
             }
