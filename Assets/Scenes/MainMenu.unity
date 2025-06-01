@@ -597,6 +597,7 @@ GameObject:
   - component: {fileID: 202860789}
   - component: {fileID: 202860791}
   - component: {fileID: 202860790}
+  - component: {fileID: 202860792}
   m_Layer: 5
   m_Name: tree
   m_TagString: Untagged
@@ -661,6 +662,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202860788}
   m_CullTransparentMesh: 1
+
 --- !u!1001 &223493791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -865,6 +867,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8415998738822816516, guid: 34306c5670644d7d5abff279eaaf3b25, type: 3}
   m_PrefabInstance: {fileID: 336792969}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &202860792
 --- !u!1 &358225996
 GameObject:
   m_ObjectHideFlags: 0

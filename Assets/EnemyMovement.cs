@@ -24,7 +24,7 @@ public class EnemyMovement : MonoBehaviour
     {
         t = transform;
         step = Random.Range(100,240);
-        health = (int)(health * (1 + resourceManager.GetComponent<ResourceManagerScript>().getLevel()/10));
+        health = (int)(health * (1 + resourceManager.GetComponent<ResourceManagerScript>().getLevel()/20));
         max_health = health;
         max_speed = initial_speed;
     }
