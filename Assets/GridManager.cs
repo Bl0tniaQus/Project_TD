@@ -56,7 +56,6 @@ public class GridManager : MonoBehaviour
         }
         tiles[center, center].GetComponent<Tile>().setType(1);
         tiles[center,center].GetComponent<Animator>().SetInteger("Type", 10);
-        Debug.Log(center);
         Vector3 cam_pos = camera.transform.position;
         Vector3 middle_pos = tiles[center, center].GetComponent<Tile>().transform.position;
         cam_pos.x = middle_pos.x;
@@ -244,6 +243,8 @@ public class GridManager : MonoBehaviour
             int prob = Random.Range(0,100);
             float spawnProb = weightedProbability(baseSpawnerSpawnProbability, baseSpawnerSpawnDecay, new_spawners);
             (int x_new, int y_new) = shiftCoords(x,y,dir);
+            if ((x_new,y_new)==(center-1, center-1)||(x_new,y_new)==(center-1, center+1)||(x_new,y_new)==(center+1, center-1)||(x_new,y_new)==(center+1, center+1))
+            {continue;}
             if (checkFreeField(x_new,y_new) && prob <= spawnProb)
             {
                 setSpawner(x_new,y_new);

@@ -179,11 +179,11 @@ public class Tile : MonoBehaviour
         }
         if (level>20 && level<=27)
         {
-            this.probabilities = new int[] {20, 20, 40, 40, 15, 15};
+            this.probabilities = new int[] {20, 20, 40, 40, 10, 10};
         }
         if (level>=28)
         {
-            this.probabilities = new int[] {5, 5, 40, 40, 30, 30};
+            this.probabilities = new int[] {5, 5, 40, 40, 15, 15};
         }
 
 
