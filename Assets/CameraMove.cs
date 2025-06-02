@@ -17,15 +17,34 @@ public class CameraMove : MonoBehaviour
         ResetCamera = Camera.main.transform.position;
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+            Camera.main.transform.position = Camera.main.transform.position + Vector3.right*(Time.deltaTime * 6f);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            Camera.main.transform.position = Camera.main.transform.position - Vector3.right*(Time.deltaTime * 6f);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            Camera.main.transform.position = Camera.main.transform.position + Vector3.up*(Time.deltaTime * 6f);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            Camera.main.transform.position = Camera.main.transform.position - Vector3.up*(Time.deltaTime * 6f);
+        }
+    }
 
     private void LateUpdate()
     {
 
-        if (Input.GetAxis("Mouse ScrollWheel")>0f) // forward
+        if (Input.GetAxis("Mouse ScrollWheel")>0f || Input.GetKeyDown(KeyCode.Q)) // forward
 		{
             if (Camera.main.orthographicSize>1) Camera.main.orthographicSize--;
 		}
-		if (Input.GetAxis("Mouse ScrollWheel")<0f ) // backwards
+		if (Input.GetAxis("Mouse ScrollWheel")<0f  || Input.GetKeyDown(KeyCode.E)) // backwards
 		{
 			Camera.main.orthographicSize++;
 		}
@@ -49,6 +68,9 @@ public class CameraMove : MonoBehaviour
         {
             Camera.main.transform.position = Origin - Difference;
         }
+
+        
+
 
     }
 }

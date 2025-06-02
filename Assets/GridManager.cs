@@ -26,7 +26,6 @@ public class GridManager : MonoBehaviour
     private List<(int, int)> roadList = new List<(int, int)>();
     private Tile[,] tiles;
     static int dim;
-    private int neutralLevel = 0;
     private int center;
     private int x_left,x_right,y_bot,y_top;
     private int spawnerCount;

@@ -29,19 +29,7 @@ public class ResourceManagerScript : MonoBehaviour
                 scoreGoalBase = scoreGoalBase * scoreFactor;
                 scoreGoal = scoreGoal + (long)(scoreGoalBase);
                 level++;
-                Debug.Log(level);
-                this.mapGrid.GetComponent<GridManager>().expandRoad();
-                for (int i = 0; i < 2; i++)
-                {
-                        int r = Random.Range(1,5);
-                    if (level>0) {
-                    if (r==1) {this.mapGrid.GetComponent<GridManager>().expandField_down();}
-                    if (r==2) {this.mapGrid.GetComponent<GridManager>().expandField_up();}
-                    if (r==3) {this.mapGrid.GetComponent<GridManager>().expandField_left();}
-                    if (r==4) {this.mapGrid.GetComponent<GridManager>().expandField_right();}
-                }
-                }
-                
+                mapExpansion();
         }
         if (hp<=70&&hp>=31&&coreState==0)
         {
@@ -79,4 +67,18 @@ public class ResourceManagerScript : MonoBehaviour
     public void increaseScore(int s) {  this.money+=s; this.score+=s;}
     public int getLevel() {return this.level;}
     public void spendMoney(int m) {this.money -= m;}
+    public void mapExpansion()
+    {
+        this.mapGrid.GetComponent<GridManager>().expandRoad();
+                for (int i = 0; i < 2; i++)
+                {
+                        int r = Random.Range(1,5);
+                    if (level>0) {
+                    if (r==1) {this.mapGrid.GetComponent<GridManager>().expandField_down();}
+                    if (r==2) {this.mapGrid.GetComponent<GridManager>().expandField_up();}
+                    if (r==3) {this.mapGrid.GetComponent<GridManager>().expandField_left();}
+                    if (r==4) {this.mapGrid.GetComponent<GridManager>().expandField_right();}
+                }
+                }
+    }
 }

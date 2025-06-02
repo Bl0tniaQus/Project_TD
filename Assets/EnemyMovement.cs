@@ -120,8 +120,13 @@ public class EnemyMovement : MonoBehaviour
         if (health<=0)
         {
             markedForDestruction = true;
-            this.resourceManager.GetComponent<ResourceManagerScript>().increaseScore(this.max_health);
-            
+            this.resourceManager.GetComponent<ResourceManagerScript>().increaseScore(this.damage*2);
+            int r = Random.Range(1,1000);
+            if (r==711)
+            {
+                this.resourceManager.GetComponent<ResourceManagerScript>().mapExpansion();
+            }
+        
             Destroy(this.gameObject);
         }
     }

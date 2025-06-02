@@ -19,7 +19,6 @@ public class GameOverManager : MonoBehaviour
     {
         
     totalScore.text = "End Game\n\nTotal Score: " + score.ToString();
-    Debug.Log("xd");
     isGameOver = true;
     endGamePanel.SetActive(true);
     Time.timeScale = 0f; 
