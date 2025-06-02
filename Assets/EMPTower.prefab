@@ -102,8 +102,8 @@ MonoBehaviour:
   initialCooldown: 2
   projectile: {fileID: 4361158694007585317, guid: e8498df6b6d8f0a8c8c46dbe88041db7, type: 3}
   damage: 1
-  speed: 5
-  ttl: 1
+  speed: 5.5
+  ttl: 1.2
   piercing: -100
 --- !u!58 &8662191625749628506
 CircleCollider2D:
@@ -139,7 +139,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.1
+  m_Radius: 2.2
 --- !u!95 &8466564483117768937
 Animator:
   serializedVersion: 5

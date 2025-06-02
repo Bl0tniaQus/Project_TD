@@ -29,9 +29,6 @@ public class InGameMenu : MonoBehaviour
             pausePanel.SetActive(true);
             Time.timeScale = 0f; // zatrzymaj grę
         }
-        else
-        {
-            Debug.LogError("Nie przypisano panelu pauzy w inspektorze!");
-        }
+
     }
 }

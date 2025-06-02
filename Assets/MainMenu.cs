@@ -95,7 +95,6 @@ public class MainMenu : MonoBehaviour
             hardButton.image.color = Color.red;
             break;
     }
-        Debug.Log("Ustawiono poziom trudności: " + difficulty);
         //ShowMainMenu();
         
     }

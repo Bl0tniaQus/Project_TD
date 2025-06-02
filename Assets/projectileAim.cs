@@ -105,24 +105,24 @@ public class projectileAim : MonoBehaviour
             this.tile.GetComponent<Animator>().SetInteger("Type", 50+level);
             if (name=="Energy Blaster(Clone)")
         {
-            this.initialCooldown-=0.25f;
+            this.initialCooldown-=0.4f;
             this.damage+=3*this.level;
             this.speed+=0.06f*this.level;
             this.GetComponent<CircleCollider2D>().radius += 1;
         }
         if (name=="Precision Laser(Clone)")
         {
-            this.initialCooldown-=0.5f;
-            this.damage+=5*this.level;
-            this.speed+=0.2f*this.level;
+            this.initialCooldown-=0.6f;
+            this.damage+=6*this.level;
+            this.speed+=0.3f*this.level;
             this.piercing+=1;
-            this.GetComponent<CircleCollider2D>().radius += 2;
+            this.GetComponent<CircleCollider2D>().radius += 1*this.level;
         }
         if (name=="EMPTower(Clone)")
         {
             this.damage+=2*this.level;
-            this.speed+=0.83f;
-            this.GetComponent<CircleCollider2D>().radius += 0.45f;
+            this.speed+=0.5f*this.level;
+            this.GetComponent<CircleCollider2D>().radius += 0.3f * this.level;
         }
         }
         

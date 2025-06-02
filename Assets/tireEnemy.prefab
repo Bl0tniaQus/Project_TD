@@ -172,10 +172,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca1508ce89f26f819a85ac9c9bc919d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initial_speed: 0.4
+  initial_speed: 0.55
   damage: 5
   health: 5
-  cooldown: 8
+  cooldown: 12
 --- !u!95 &2402837386012428057
 Animator:
   serializedVersion: 5
